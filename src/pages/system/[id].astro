@@ -1,0 +1,20 @@
+---
+// Bygger en statisk detaljsida för varje systemfil.
+import type { GetStaticPaths } from 'astro';
+import { getCollection, render } from 'astro:content';
+import SystemLayout from '../../layouts/SystemLayout.astro';
+
+
+// Skapar en adress och skickar rätt Markdown-post till respektive systemsida.
+export const getStaticPaths = (async () => {
+   const entries = await getCollection('systems');
+   return entries.map((entry) => ({ params: { id: entry.id }, props: { entry } }));
+}) satisfies GetStaticPaths;
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<SystemLayout {...entry.data}>
+   <Content />
+</SystemLayout>

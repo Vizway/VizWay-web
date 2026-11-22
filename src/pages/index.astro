@@ -1,0 +1,17 @@
+---
+// Läser startsidans innehåll och visar det i den gemensamma sidramen.
+import Hero from '../components/hero/Hero.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { loadPage } from '../lib/content';
+
+const { title, heroAccent, description, Content } = await loadPage('start');
+if (!heroAccent) {
+   throw new Error('Startsidan saknar fältet heroAccent i src/content/pages/start.md.');
+}
+---
+
+<BaseLayout title={`${title} ${heroAccent}`} description={description} immersive>
+   <Hero title={title} accent={heroAccent}>
+      <Content />
+   </Hero>
+</BaseLayout>

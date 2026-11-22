@@ -1,0 +1,42 @@
+---
+// Visar en tillgänglig knapp som växlar mellan ljust och mörkt tema.
+---
+
+<button class="theme-toggle" type="button" aria-pressed="false" data-theme-toggle hidden>
+   <span class="theme-icon" aria-hidden="true"></span>
+   Mörkt tema
+</button>
+
+<script>
+   // Kopplar knappen till systemets färgval och besökarens sparade tema.
+   const button = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
+   const root = document.documentElement;
+   const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+
+   // Visar om mörkt tema är aktivt och gör knappen tillgänglig.
+   function syncButton() {
+      if (!button) return;
+      const dark = root.dataset.theme ? root.dataset.theme === 'dark' : systemTheme.matches;
+      button.setAttribute('aria-pressed', String(dark));
+      button.hidden = false;
+   }
+
+
+   // Växlar tema direkt och sparar valet för nästa sidvisning när lagring finns.
+   function toggleTheme() {
+      if (!button) return;
+      const theme = button.getAttribute('aria-pressed') === 'true' ? 'light' : 'dark';
+      root.dataset.theme = theme;
+      try {
+         localStorage.setItem('vizway-theme', theme);
+      } catch {
+         // Temat fungerar på den aktuella sidan även utan lokal lagring.
+      }
+      syncButton();
+   }
+
+   syncButton();
+   button?.addEventListener('click', toggleTheme);
+   systemTheme.addEventListener('change', syncButton);
+</script>

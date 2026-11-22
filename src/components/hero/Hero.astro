@@ -1,0 +1,70 @@
+---
+// Placerar startsidans fyra innehållsenheter i ett gemensamt rutnät.
+import HeroBackground from './HeroBackground.astro';
+import HeroExplore from './HeroExplore.astro';
+import HeroLogo from './HeroLogo.astro';
+import HeroText from './HeroText.astro';
+import HeroTitle from './HeroTitle.astro';
+
+interface Props {
+   title: string;
+   accent: string;
+}
+
+const { title, accent } = Astro.props;
+---
+
+<section class="hero" aria-labelledby="start-heading">
+   <HeroBackground />
+   <div class="hero-layout">
+      <div class="logo"><HeroLogo /></div>
+      <div class="title"><HeroTitle title={title} accent={accent} /></div>
+      <div class="text"><HeroText><slot /></HeroText></div>
+      <div class="explore"><HeroExplore /></div>
+   </div>
+</section>
+
+<style>
+   @font-face {
+      font-family: 'Liberation Serif';
+      src: url('/fonts/liberation-serif/LiberationSerif-Italic.ttf') format('truetype');
+      font-style: italic;
+      font-weight: 400;
+      font-display: swap;
+   }
+
+   .hero {
+      --hero-font: 'Liberation Serif', Georgia, 'Times New Roman', serif;
+      --hero-ink: #f6fbff;
+      --hero-accent: #85f8f6;
+      --hero-shadow: 0 1px 3px #010c20, 0 0 0.65em #03162d;
+      position: relative;
+      isolation: isolate;
+      min-block-size: max(100svh, 47vw);
+      background: #03142a;
+      color: var(--hero-ink);
+   }
+
+   .hero-layout {
+      display: grid;
+      grid-template-areas: 'logo' 'title' 'text' 'explore';
+      justify-items: start;
+      gap: clamp(1rem, 1.6vw, 1.65rem);
+      padding: clamp(1.65rem, 2.7vw, 3.5rem) 6.5vw clamp(4rem, 12vw, 13rem);
+   }
+
+   .logo { grid-area: logo; }
+   .title { grid-area: title; }
+   .text { grid-area: text; }
+   .explore { grid-area: explore; }
+
+   .title {
+      margin-block-start: clamp(0.2rem, 1vw, 1.25rem);
+   }
+
+   @media (max-width: 36rem) {
+      .hero-layout {
+         padding-inline: clamp(1.25rem, 6.5vw, 2.5rem);
+      }
+   }
+</style>

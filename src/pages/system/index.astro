@@ -1,0 +1,38 @@
+---
+// Grupperar och sorterar systemsidor efter status och svensk titel.
+import { getCollection } from 'astro:content';
+import PageLayout from '../../layouts/PageLayout.astro';
+import { loadPage } from '../../lib/content';
+import { systemStatuses } from '../../lib/system-status';
+
+const { title, description, Content } = await loadPage('system');
+const entries = await getCollection('systems');
+const sections = Object.entries(systemStatuses).map(([status, labels]) => ({
+   status,
+   ...labels,
+   entries: entries.filter(({ data }) => data.status === status)
+      .sort((first, second) => first.data.title.localeCompare(second.data.title, 'sv')),
+}));
+---
+
+<PageLayout title={title} description={description}>
+   <Content />
+   <div class="system-sections" slot="details">
+      {sections.map((section) => (
+         <section class="system-section" aria-labelledby={`status-${section.status}`}>
+            <h2 id={`status-${section.status}`}>{section.label}</h2>
+            {section.entries.length ? (
+               <ul class="system-list">
+                  {section.entries.map(({ id, data }) => (
+                     <li class="system-card">
+                        {data.example && <p class="section-label">Exempel</p>}
+                        <h3><a href={`/system/${id}/`}>{data.title}</a></h3>
+                        <p>{data.description}</p>
+                     </li>
+                  ))}
+               </ul>
+            ) : <p>{section.empty}</p>}
+         </section>
+      ))}
+   </div>
+</PageLayout>

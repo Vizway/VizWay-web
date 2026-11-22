@@ -1,0 +1,39 @@
+---
+// Visar VizWays ordmärke, huvudnavigation och temaväxling.
+import ThemeToggle from './ThemeToggle.astro';
+
+interface Props {
+   name: string;
+}
+
+const { name } = Astro.props;
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const links = [
+   { href: '/', label: 'Start' },
+   { href: '/system/', label: 'System' },
+   { href: '/om/', label: 'Om VizWay' },
+   { href: '/kontakt/', label: 'Kontakt' },
+];
+---
+
+<header class="site-header">
+   <div class="container header-inner">
+      <a class="brand" href="/" aria-label={`${name}, startsida`}>{name}</a>
+      <nav class="main-nav" aria-label="Huvudnavigation">
+         <ul>
+            {links.map(({ href, label }) => {
+               const target = href.replace(/\/$/, '') || '/';
+               const current = path === target ? 'page' : undefined;
+               return (
+                  <li>
+                     <a href={href} aria-current={current} class:list={[{ 'in-section': target === '/system' && path.startsWith('/system/') }]}>
+                        {label}
+                     </a>
+                  </li>
+               );
+            })}
+         </ul>
+      </nav>
+      <ThemeToggle />
+   </div>
+</header>

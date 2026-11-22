@@ -1,0 +1,55 @@
+---
+// Visar den redigerbara rubriken med ett turkost accentord och en böjd linje.
+interface Props {
+   title: string;
+   accent: string;
+}
+
+const { title, accent } = Astro.props;
+---
+
+<h1 id="start-heading">
+   {title}{' '}<span class="accent">
+      {accent}
+      <svg viewBox="0 0 300 30" preserveAspectRatio="none" aria-hidden="true">
+         <path d="M0 29Q184 -19 300 17Q183 -12 0 29Z" />
+      </svg>
+   </span>
+</h1>
+
+<style>
+   h1 {
+      max-width: none;
+      font: italic 400 clamp(2.85rem, 6.35vw, 6.4rem) / 1.08 var(--hero-font);
+      letter-spacing: -0.035em;
+      text-shadow: var(--hero-shadow);
+      text-wrap: wrap;
+   }
+
+   .accent {
+      position: relative;
+      display: inline-block;
+      max-width: 100%;
+      color: var(--hero-accent);
+   }
+
+   svg {
+      position: absolute;
+      inset: auto 0 -0.17em auto;
+      width: 77%;
+      height: 0.29em;
+      overflow: visible;
+      fill: #4af1ef;
+   }
+
+   @media (max-width: 36rem) {
+      h1 {
+         font-size: clamp(2.55rem, 10vw, 3.6rem);
+      }
+
+      .accent {
+         display: block;
+         width: fit-content;
+      }
+   }
+</style>

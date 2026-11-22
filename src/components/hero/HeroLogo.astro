@@ -1,0 +1,73 @@
+---
+// Återskapar ordmärket, stjärnan och sloganen från logotypens referensbild.
+import { getEntry } from 'astro:content';
+
+const identity = await getEntry('site', 'identitet');
+if (!identity) {
+   throw new Error('Hero-logotypen saknar webbplatsens identitet.');
+}
+const { name, slogan } = identity.data;
+---
+
+<div class="wordmark">
+   <div class="name">
+      <svg viewBox="0 0 162 42" aria-hidden="true">
+         <path class="trail" d="M2 40Q75 5 143 17Q81 10 2 40Z" />
+         <path class="star" d="M144 3C145 13 148 15 158 17C148 18 145 22 144 31C142 21 140 18 130 17C140 15 142 13 144 3Z" />
+      </svg>
+      <span>{name}</span>
+   </div>
+   <p class="slogan">{slogan}</p>
+</div>
+
+<style>
+   .wordmark {
+      display: grid;
+      justify-items: start;
+      gap: 0.2rem;
+   }
+
+   .name {
+      position: relative;
+      padding: 0.12em 0.2em 0.08em 0.13em;
+      font: italic 400 clamp(3.25rem, 5.6vw, 6rem) / 1 var(--hero-font);
+      letter-spacing: -0.055em;
+      text-shadow: var(--hero-shadow);
+   }
+
+   .name span {
+      display: block;
+      transform: rotate(-8deg);
+   }
+
+   .name svg {
+      position: absolute;
+      inset: -0.13em -0.12em auto auto;
+      width: 71%;
+      overflow: visible;
+      color: #59f8f7;
+      filter: drop-shadow(0 0 0.04em currentColor);
+   }
+
+   .trail { fill: currentColor; }
+   .star { fill: #e6ffff; }
+
+   .slogan {
+      display: flex;
+      align-items: center;
+      gap: 0.55em;
+      color: var(--hero-accent);
+      font-size: clamp(0.67rem, 1.1vw, 1rem);
+      font-style: italic;
+      letter-spacing: 0.15em;
+      text-align: center;
+      text-shadow: var(--hero-shadow);
+   }
+
+   .slogan::before, .slogan::after {
+      flex: 1 0 1.7em;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, currentColor, transparent);
+      content: '';
+   }
+</style>

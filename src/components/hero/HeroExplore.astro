@@ -1,0 +1,47 @@
+---
+// Länkar från startsidan till systemöversikten.
+---
+
+<a href="/system/">
+   Utforska!
+   <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M3 12h17m-7-7 7 7-7 7" />
+   </svg>
+</a>
+
+<style>
+   a {
+      display: inline-flex;
+      min-height: 2.75rem;
+      align-items: center;
+      justify-content: center;
+      gap: 0.7em;
+      padding: 0.45em 1.5em;
+      border-radius: 99rem;
+      background: linear-gradient(105deg, #18e8ee, #68faf0);
+      box-shadow: 0 0 1.15em #1eebed45;
+      color: #041c37;
+      font-size: clamp(1.05rem, 1.75vw, 1.7rem);
+      font-weight: 720;
+      text-decoration: none;
+   }
+
+   a:hover {
+      box-shadow: 0 0 1.3em #1eebed80;
+   }
+
+   a:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 4px;
+   }
+
+   svg {
+      width: 1.05em;
+      height: 1.05em;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+   }
+</style>

@@ -1,0 +1,51 @@
+---
+// Tillhandahåller gemensam sidram, identitet, metadata och navigering.
+import { getEntry } from 'astro:content';
+import SiteHeader from '../components/SiteHeader.astro';
+import '../styles/global.css';
+
+interface Props {
+   title: string;
+   description: string;
+   immersive?: boolean;
+}
+
+const { title, description, immersive = false } = Astro.props;
+const identity = await getEntry('site', 'identitet');
+if (!identity) {
+   throw new Error('Webbplatsens identitet saknas i src/content/site/identitet.yaml.');
+}
+const { name } = identity.data;
+const documentTitle = title.includes(name) ? title : `${title} | ${name}`;
+---
+
+<!doctype html>
+<html lang="sv">
+   <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta name="description" content={description} />
+      <title>{documentTitle}</title>
+      <script is:inline>
+         // Återställ det sparade temat innan sidan ritas.
+         try {
+            const theme = localStorage.getItem('vizway-theme');
+            if (theme === 'light' || theme === 'dark') {
+               document.documentElement.dataset.theme = theme;
+            }
+         } catch {
+            // CSS följer systemets färgval när lagring saknas.
+         }
+      </script>
+   </head>
+   <body>
+      <a href="#innehall" class="skip-link">Hoppa till innehållet</a>
+      {!immersive && <SiteHeader name={name} />}
+      <main id="innehall" tabindex={immersive ? -1 : undefined}>
+         <slot />
+      </main>
+      {!immersive && <footer class="site-footer">
+         <div class="container footer-inner">{name}</div>
+      </footer>}
+   </body>
+</html>
