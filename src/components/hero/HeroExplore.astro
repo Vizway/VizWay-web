@@ -4,30 +4,35 @@
 
 <a href="/system/">
    Utforska!
-   <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M3 12h17m-7-7 7 7-7 7" />
+   <svg viewBox="0 0 24 16" aria-hidden="true">
+      <path d="M2 8h19m-6-6 6 6-6 6" />
    </svg>
 </a>
 
 <style>
    a {
+      --explore-height: clamp(2.75rem, 3.65vw, 3.5rem);
       display: inline-flex;
-      min-height: 2.75rem;
+      min-block-size: var(--explore-height);
+      min-inline-size: clamp(10.5rem, 15vw, 14rem);
       align-items: center;
       justify-content: center;
-      gap: 0.7em;
-      padding: 0.45em 1.5em;
-      border-radius: 99rem;
-      background: linear-gradient(105deg, #18e8ee, #68faf0);
-      box-shadow: 0 0 1.15em #1eebed45;
+      gap: 0.85em;
+      padding: 0.3em 1.25em;
+      border-radius: calc(var(--explore-height) / 2);
+      background: linear-gradient(105deg, #08eef4 5%, #47f7f6 62%, #78fff4);
+      box-shadow: inset 0 1px 2px #c8ffff80, 0 0 0.55em #00f6ff65, 0 0 1.1em #00d9ff38;
       color: #041c37;
-      font-size: clamp(1.05rem, 1.75vw, 1.7rem);
-      font-weight: 720;
+      font-size: clamp(1rem, 1.5vw, 1.45rem);
+      font-style: italic;
+      font-weight: 700;
+      letter-spacing: 0.015em;
+      line-height: 1.2;
       text-decoration: none;
    }
 
    a:hover {
-      box-shadow: 0 0 1.3em #1eebed80;
+      box-shadow: inset 0 1px 2px #c8ffffa0, 0 0 0.7em #00f6ff90, 0 0 1.3em #00d9ff65;
    }
 
    a:focus-visible {
@@ -36,11 +41,11 @@
    }
 
    svg {
-      width: 1.05em;
-      height: 1.05em;
+      flex: 0 0 1.22em;
+      inline-size: 1.22em;
       fill: none;
       stroke: currentColor;
-      stroke-width: 2;
+      stroke-width: 1.7;
       stroke-linecap: round;
       stroke-linejoin: round;
    }

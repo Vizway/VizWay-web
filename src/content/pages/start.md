@@ -1,6 +1,6 @@
 ---
 title: Vi ser
-heroAccent: Möjligheter
+heroAccent: möjligheter
 description: VizWay utvecklar och förvaltar egna intelligenta digitala system.
 ---
 

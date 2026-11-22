@@ -1,25 +1,30 @@
 # Status för VizWay Webb v0.2
 
-Startsidans hero är monterad och verifierad lokalt den 22 november 2026.
+Startsidans hero är monterad och verifierad lokalt. Den andra visuella finjusteringen slutfördes den 22 november 2026.
 
 ## Levererat
 
 - Originalbilden ligger i `public/images/hero/background-s1.png`. Den täcker startsidan och beskärs efter fönstrets proportioner.
 - Logotyp, rubrik, vers och Utforska-länk har egna Astro-komponenter i `src/components/hero/`. `Hero.astro` styr placeringen i ett CSS-rutnät.
-- Rubriken **Vi ser Möjligheter** och versens fyra rader redigeras i `src/content/pages/start.md`. Namnet och sloganen **Visionary Intelligent Zystems** hämtas från `src/content/site/identitet.yaml`.
-- **Utforska!** leder till `/system/`, där huvudnavigationen ger tillgång till övriga sidor.
+- Huvudrubriken och webbläsarens sidtitel visar **Vi ser möjligheter**. Rubriken och versens fyra rader redigeras i `src/content/pages/start.md`.
+- Logotypen är 20 % större från 1 024 pixlars bredd. De kursiva vektorkonturerna, den turkosa bågen och stjärnan skalas tillsammans uppe till vänster. Vid mindre bredder har logotypen samma storlek som tidigare.
+- **Visionary Intelligent Zystems** visas på en rad under logotypen. Sloganen använder tunn, kursiv typografi i ljust turkos med något större bokstavsavstånd. Namn och slogan hämtas från `src/content/site/identitet.yaml`.
+- **Utforska!** leder till `/system/`. Knappen ligger längre ned och åt höger från 1 200 pixlars bredd när fönstret har proportionerna 16:10 eller är bredare.
 - [README.md](README.md) beskriver hur bilden, logotypen, texterna, placeringen och formgivningen ändras.
 
 ## Verifiering
 
-- Jämförde bakgrundsfilen byte för byte med originalet i `_doc/`. Läste designskissen och referensbilderna för logotyp, rubrik och knapp.
+- Jämförde logotypen med `_doc/logga.png`. Kontrollerade att bakgrundsbilden och de fyra övriga sidornas byggda HTML var identiska före och efter ändringen.
 - `npm run build` genererade fem statiska sidor i `dist/`.
-- Granskade skärmbilder i Chrome mot den befintliga utvecklingsservern på `127.0.0.1:4321` vid 320 × 568, 390 × 844, 768 × 1024 och 1440 × 900 pixlar. I varje storlek kontrollerades bild och typsnitt, fyra versrader, komponenternas placering och att sidan ryms i bredd.
+- Granskade det statiska bygget i Chrome vid 320 × 568, 390 × 844, 768 × 1 024 och 1 440 × 900 pixlar. Sloganen visades i kursiv på en rad. Rubriken hade rätt skiftläge, versen låg på fyra rader och sidan rymdes utan horisontell rullning.
+- Vid 1 440 × 900 pixlar låg knappen 15 pixlar åt höger och 16 pixlar längre ned jämfört med föregående version. Granskade även knappens placering mot ljusspåret vid andra desktopformat.
 - Tab gav synligt fokus på **Utforska!**. Enter öppnade systemöversikten med länkar till Start, Om VizWay och Kontakt i alla fyra storlekar. Samtliga fem sidor svarade med HTTP 200.
 
 ## Visuella avvikelser
 
-- Logotypen återskapas med lokal kursiv Liberation Serif och SVG-former eftersom referensbilden har en ogenomskinlig bakgrund. Bokstavsformer, linje och stjärnglöd skiljer sig något från referensen.
+- Logotypens vektorkonturer och stjärnglöd skiljer sig något från rasterreferensen.
+- I smalare eller mer kvadratiska desktopfönster ligger Utforska nära sin tidigare position. Där kan en förskjutning åt höger och nedåt föra knappen över ljusspåret.
+- Utforska-knappen är proportionellt något högre på mobil än i referensen. Länkytan är minst 44 pixlar hög.
 - På mobil står rubriken på två rader. Den tajtare beskärningen visar himlen, stjärnan och ljusspåret. Vid 390 × 844 pixlar hamnar soluppgångens mitt nära vänsterkanten. En toning över bilden vid smala fönster förbättrar textkontrasten.
 
 # Tidigare status för VizWay Webb v0.1
