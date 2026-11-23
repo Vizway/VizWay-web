@@ -5,7 +5,7 @@ description: Financial analysis and decision support for creating long-term valu
 
 ## Purpose and intended use
 
-Bygga Välstånd is intended to help users analyze financial opportunities and weigh alternatives against long-term goals.
+Bygga Välstånd (Building Prosperity) is intended to help users analyze financial opportunities and weigh alternatives against long-term goals.
 
 ## Current development
 

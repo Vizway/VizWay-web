@@ -4,7 +4,7 @@ heroAccent: possibilities
 description: VizWay develops and maintains its own intelligent digital systems.
 ---
 
-In obstacles, we see paths to the future
+In every obstacle, we see a path forward
 
 From vision, direction emerges
 

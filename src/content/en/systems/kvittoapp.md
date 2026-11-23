@@ -18,7 +18,7 @@ The mobile app is designed around a simple workflow. The idea is to photograph r
 
 ### Part 2 – OCR → SIE
 
-Work on OCR → SIE has begun. This part is still in development.
+Work on OCR → SIE has begun. This part is still in development. SIE is a Swedish standard for exchanging accounting data between bookkeeping systems.
 
 ## Future possibilities
 

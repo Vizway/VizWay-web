@@ -1,4 +1,21 @@
-# Sidhuvud och systemstatus, 23 november 2026
+# Engelsk textgranskning, 23 november 2026
+
+Uppdrag 009b är genomfört och verifierat lokalt.
+
+## Genomförda ändringar
+
+- Startsidans första engelska versrad är nu *In every obstacle, we see a path forward*. Dikten behåller fyra rader och samma typografi.
+- Om VizWay använder formuleringen *thoughtfully designed systems* och HTML-sidtiteln **About VizWay | VizWay**. Sidramens ändring gäller titelberäkningen. Den synliga rubriken är kvar.
+- VizOS beskrivs som *a reproducible and manageable IT environment*. Bygga Välstånd behåller sitt produktnamn och får förklaringen *Building Prosperity* vid första omnämnandet i brödtexten.
+- KvittoApp förklarar SIE som en svensk standard för utbyte av bokföringsdata. Texten anger fortsatt att OCR → SIE är under utveckling.
+- Det engelska statusnamnet för `ide` är **Concept**. Statusvärdet och den svenska beteckningen **Framtida idé** har bevarats.
+
+## Verifiering
+
+- `npm run build` byggde alla 18 sidor. Jämförde engelska texter, sidtitlar och metabeskrivningar över lokal HTTP. Samtliga svenska HTML-sidor och gemensamma resurser var byte för byte identiska med referensbygget.
+- Verifierade interna länkar och testade språkbytet i båda riktningarna i Chrome vid 320, 390, 768 och 1 440 pixlar i ljust och mörkt tema. Den engelska versen visades på fyra rader och ingen text kapades horisontellt vid de testade bredderna.
+
+# Tidigare status för sidhuvud och systemstatus, 23 november 2026
 
 Uppdrag 009a är genomfört och verifierat lokalt.
 

@@ -1,6 +1,6 @@
 ---
 title: VizOS
-description: A reproducible and controllable IT environment based on NixOS.
+description: A reproducible and manageable IT environment based on NixOS.
 ---
 
 ## Purpose and intended use

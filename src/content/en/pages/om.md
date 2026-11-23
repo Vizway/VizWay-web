@@ -15,7 +15,7 @@ The common thread has always been the ability to see the big picture, understand
 
 Today, VizWay develops its own intelligent digital systems, with a particular interest in automation, artificial intelligence and new ways to make people's work and daily lives easier.
 
-We believe in technology that delivers practical value. We aim to build well-considered systems that can evolve and stay useful over time.
+We believe in technology that delivers practical value. We aim to build thoughtfully designed systems that can evolve and stay useful over time.
 
 **Experience gives us a foundation. Curiosity drives us forward.**
 
