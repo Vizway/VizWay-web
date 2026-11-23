@@ -21,7 +21,7 @@ Vi utvecklar den stegvis och bevarar fungerande versioner i Git.
 - **P2 – Förbättring:** Planeras när grundläggande funktioner är klara.
 - **P3 – Framtid:** Idéer för senare utvärdering.
 
-Status: `Öppen`, `Pågår`, `Klar`, `Parkerad`.
+Status: `Öppen`, `Planerad`, `Pågår`, `Klar`, `Parkerad`.
 
 ## P1 – Nästa utvecklingsomgång
 
@@ -120,6 +120,31 @@ Punkterna 001–003 är verifierade i det lokala bygget för uppdrag 007.
 
 **Mål:** Elegant, luftig och konsekvent typografi där rubriker framträder genom sin form och placering snarare än kraftig fetstil.
 
+## P3 – Framtida förbättringar
+
+### 007 – Gemensam stjärnheader och footer
+
+- **Prioritet:** P3
+- **Status:** Planerad
+- **Område:** Visuell identitet och navigation
+
+**Syfte:** Skapa en sammanhängande visuell upplevelse mellan startsidan och webbplatsens undersidor.
+
+**Åtgärder:**
+
+- [ ] Återanvänd den övre delen av startsidans stjärnhimmel i samtliga sidhuvuden.
+- [ ] Harmoniera logotypens storlek och position så att den inte upplevs hoppa när besökaren byter sida.
+- [ ] Behåll undersidornas navigation och tema-/språkkontroller.
+- [ ] Utforma footern med samma stjärntema, men i en mörkare och mer diskret variant.
+- [ ] Skapa gemensamma designprinciper och återanvändbara komponenter.
+- [ ] Kontrollera läsbarhet, kontrast, mobilanpassning och laddningstid.
+- [ ] Verifiera både svenska och engelska samt ljust och mörkt tema.
+
+**Designprincip:**
+Startsidan, undersidorna och footern ska uppfattas som delar av samma visuella värld.
+
+**Avgränsning:**
+Separat framtida uppdrag. Ingen förändring av nuvarande godkända layout.
 
 ## Klart
 

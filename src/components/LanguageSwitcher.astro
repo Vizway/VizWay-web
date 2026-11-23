@@ -1,5 +1,5 @@
 ---
-// Visar det aktiva språkets flagga och länkar till sidans andra språk.
+// Visar målspråkets flagga och länkar till motsvarande sida.
 import { languages, localizePath } from '../lib/i18n';
 import type { Locale } from '../lib/i18n';
 
@@ -9,11 +9,12 @@ interface Props {
 
 const { locale } = Astro.props;
 const target = languages[locale === 'sv' ? 1 : 0];
+const label = target.locale === 'en' ? 'Switch to English' : 'Byt till svenska';
 ---
 
 <a class="language-switcher planet-control" href={localizePath(target.locale, Astro.url.pathname)}
-   lang={target.locale} hreflang={target.locale} aria-label={target.name} title={target.name}>
-   {locale === 'sv' ? (
+   lang={target.locale} hreflang={target.locale} aria-label={label} title={label}>
+   {target.locale === 'sv' ? (
       <svg class="language-flag" viewBox="0 0 16 10" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
          <path fill="#006aa7" d="M0 0h16v10H0Z" />
          <path fill="#fecc02" d="M0 4h16v2H0ZM5 0h2v10H5Z" />
@@ -32,9 +33,8 @@ const target = languages[locale === 'sv' ? 1 : 0];
 <style>
    .language-flag {
       display: block;
-      inline-size: 1.45rem;
-      block-size: 1.45rem;
-      border: 1px solid var(--line);
+      inline-size: 1.375rem;
+      block-size: 1.375rem;
       border-radius: 50%;
       overflow: hidden;
    }

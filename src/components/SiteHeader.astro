@@ -1,5 +1,5 @@
 ---
-// Visar logotyp och kontroller ovanför huvudnavigationen.
+// Visar logotyp, kontroller och navigation i en gemensam responsiv header.
 import BrandLogo from './BrandLogo.astro';
 import LanguageSwitcher from './LanguageSwitcher.astro';
 import ThemeToggle from './ThemeToggle.astro';
@@ -22,53 +22,95 @@ const path = localizePath(locale, Astro.url.pathname);
       <div class="header-brand">
          <a class="brand" href={localizePath(locale, sitePaths.home)} aria-label={`${name}, ${ui.homeLink}`}><BrandLogo /></a>
       </div>
-      <div class="header-options">
-         <ThemeToggle {locale} />
-         <LanguageSwitcher {locale} />
+      <div class="header-actions">
+         <div class="header-options">
+            <ThemeToggle {locale} />
+            <LanguageSwitcher {locale} />
+         </div>
+         <nav class="main-nav" aria-label={ui.mainNavigation}>
+            <ul>
+               {getSiteLinks(locale, ui.navigation).map(({ href, label, key }) => {
+                  const current = path === href ? 'page' : undefined;
+                  return (
+                     <li>
+                        <a {href} aria-current={current} class:list={[{ 'in-section': key === 'system' && !current && path.startsWith(href) }]}>
+                           {label}
+                        </a>
+                     </li>
+                  );
+               })}
+            </ul>
+         </nav>
       </div>
-      <nav class="main-nav" aria-label={ui.mainNavigation}>
-         <ul>
-            {getSiteLinks(locale, ui.navigation).map(({ href, label, key }) => {
-               const current = path === href ? 'page' : undefined;
-               return (
-                  <li>
-                     <a {href} aria-current={current} class:list={[{ 'in-section': key === 'system' && !current && path.startsWith(href) }]}>
-                        {label}
-                     </a>
-                  </li>
-               );
-            })}
-         </ul>
-      </nav>
    </div>
 </header>
 
 <style>
+   .site-header {
+      container-type: inline-size;
+   }
+
    .header-inner {
+      display: grid;
+      gap: 0.5rem clamp(1rem, 3cqi, 2.75rem);
       padding-block: 0.65rem;
    }
 
    .header-brand {
-      container-type: inline-size;
+      min-inline-size: 0;
+   }
+
+   .header-brand :global(.brand-logo) {
+      justify-items: center;
    }
 
    .brand {
       --brand-padding: clamp(0.35rem, 1.75vw, 0.65rem);
-      --brand-size: min(clamp(3.5rem, 4.15vw, 4rem), (100cqi - 2 * var(--brand-padding)) / 4);
+      --brand-size: min(clamp(3.5rem, 4.15vw, 4rem), (100cqi - 2 * var(--gutter) - 2 * var(--brand-padding)) / 4);
       display: block;
       inline-size: fit-content;
+      margin-inline: auto;
       padding: 0.3rem var(--brand-padding) 0.4rem;
       border-radius: 0.4rem;
       background: light-dark(#0b1c30, transparent);
       text-decoration: none;
    }
 
+   .header-actions {
+      display: grid;
+      min-inline-size: 0;
+      align-content: space-between;
+      gap: 0.25rem;
+   }
+
    .header-options {
       display: flex;
-      min-inline-size: calc(2 * var(--size-planet) + 0.5rem);
       align-items: center;
-      justify-content: end;
+      justify-content: center;
       gap: 0.5rem;
+   }
+
+   /* Två kolumner får plats när logotypen och den bredare engelska menyn ryms med marginal. */
+   @container (min-width: 43rem) {
+      .header-inner {
+         grid-template-columns: auto minmax(0, 1fr);
+      }
+
+      .header-brand {
+         align-self: center;
+      }
+
+      .header-brand :global(.brand-logo) {
+         justify-items: start;
+      }
+
+      .brand {
+         margin-inline: 0;
+      }
+
+      .header-options {
+         justify-content: end;
+      }
    }
 
    @media (max-width: 28rem) {

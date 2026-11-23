@@ -1,4 +1,34 @@
-# Engelsk textgranskning, 23 november 2026
+# Harmoniskt sidhuvud, 23 november 2026
+
+Uppdrag 009c är genomfört och verifierat lokalt.
+
+## Genomförda ändringar
+
+- På dator ligger logotyp och slogan till vänster. Kontrollerna ligger upptill till höger och menyn är centrerad nedtill i högerkolumnen. På mobil ligger logotypen, kontrollerna och menyn i tre centrerade nivåer.
+- Språkvalet visar brittisk flagga på svenska sidor och svensk flagga på engelska sidor. Länken öppnar motsvarande sida på målspråket. Startsidornas fristående språkval använder samma komponent.
+- Kontrollerna har samma klickyta på 44 × 44 pixlar. En svag toning markerar klickytan även utan hovring. Tangentbordsfokus är synligt.
+
+## Responsiv princip
+
+- CSS Grid växlar till två kolumner när sidhuvudet är minst 43 rem brett. Måttet ger plats för logotypen, den bredare engelska menyn, mellanrummet och sidmarginalerna. Menyflexen centrerar varje rad.
+- Undersidorna reserverar utrymme för en klassisk rullningslist för att hålla sidhuvudets position vid byte mellan språkversioner med olika sidlängd.
+
+## Verifiering
+
+- `npm run build` byggde 18 sidor. Testade dem i Chrome vid 320, 390, 560, 768, 1 024 och 1 440 pixlar i båda språken och temana.
+- Kontrollerade brytpunkten, centreringen, att kontrollerna ryms, och att layouten saknar överlappning och horisontell rullning. Testade språkbyte åt båda hållen för samtliga sidpar samt sparat tema, tangentbordsfokus, klickbara systemkort och högerjusterad systemstatus.
+- Testade även 200 % sidzoom i Chrome i fönster på 768 och 1 440 pixlar i båda språken och temana. HTTP-kontrollen bekräftade att sidtexter, metadata och befintliga länkmål matchar referensbygget.
+
+## Ändrade filer
+
+- `src/components/SiteHeader.astro`, `src/components/LanguageSwitcher.astro` och `src/styles/global.css`.
+- `STATUS.md`.
+
+## Visuella avvikelser
+
+- Vid 320 pixlar använder den engelska menyn två centrerade rader. Klassiska rullningslister kan lämna ett reserverat utrymme till höger på korta undersidor.
+
+# Tidigare status för engelsk textgranskning, 23 november 2026
 
 Uppdrag 009b är genomfört och verifierat lokalt.
 

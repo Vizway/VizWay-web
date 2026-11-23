@@ -116,6 +116,10 @@ a:hover {
 
 
 /* Gemensamma färger för sidhuvud och sidfot. */
+:root:has(.site-header) {
+   scrollbar-gutter: stable;
+}
+
 .site-header, .site-footer {
    --band-tone: var(--surface);
    --band-edge: light-dark(#f6fafc, #102035);
@@ -144,20 +148,10 @@ a:hover {
    color: var(--muted);
 }
 
-.header-inner {
-   display: grid;
-   grid-template-columns: minmax(0, 1fr) auto;
-   align-items: start;
-   gap: 0.35rem clamp(0.5rem, 2vw, 1.25rem);
-}
-
-.main-nav {
-   grid-column: 1 / -1;
-}
-
 .main-nav ul {
    display: flex;
    flex-wrap: wrap;
+   justify-content: center;
    gap: 0.15rem clamp(0.35rem, 2vw, 1.5rem);
    margin: 0;
    padding: 0;
@@ -186,14 +180,18 @@ a:hover {
    block-size: var(--size-planet);
    place-items: center;
    padding: 0;
-   border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--line));
+   border: 0;
    border-radius: 50%;
-   background: radial-gradient(circle at 35% 25%, var(--accent-surface), var(--surface) 78%);
+   background: color-mix(in srgb, var(--accent) 7%, transparent);
    color: var(--accent);
 }
 
-.planet-control:is(:hover, [aria-pressed='true']) {
-   border-color: var(--accent);
+.planet-control[aria-pressed='true'] {
+   background-color: color-mix(in srgb, var(--accent) 11%, transparent);
+}
+
+.planet-control:hover {
+   background-color: color-mix(in srgb, var(--accent) 17%, transparent);
 }
 
 
