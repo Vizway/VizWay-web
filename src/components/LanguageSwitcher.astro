@@ -1,6 +1,6 @@
 ---
-// Visar länkar till samma sida på båda språken.
-import { getLanguageLinks, loadUi } from '../lib/i18n';
+// Visar det aktiva språkets flagga och länkar till sidans andra språk.
+import { languages, localizePath } from '../lib/i18n';
 import type { Locale } from '../lib/i18n';
 
 interface Props {
@@ -8,50 +8,34 @@ interface Props {
 }
 
 const { locale } = Astro.props;
-const ui = await loadUi(locale);
-const links = getLanguageLinks(Astro.url.pathname);
+const target = languages[locale === 'sv' ? 1 : 0];
 ---
 
-<nav class="language-switcher" aria-label={ui.language}>
-   {links.map(link => (
-      <a href={link.href} lang={link.locale} hreflang={link.locale} aria-label={link.name}
-         aria-current={link.locale === locale ? 'page' : undefined}>{link.locale.toUpperCase()}</a>
-   ))}
-</nav>
+<a class="language-switcher planet-control" href={localizePath(target.locale, Astro.url.pathname)}
+   lang={target.locale} hreflang={target.locale} aria-label={target.name} title={target.name}>
+   {locale === 'sv' ? (
+      <svg class="language-flag" viewBox="0 0 16 10" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+         <path fill="#006aa7" d="M0 0h16v10H0Z" />
+         <path fill="#fecc02" d="M0 4h16v2H0ZM5 0h2v10H5Z" />
+      </svg>
+   ) : (
+      <svg class="language-flag" viewBox="0 0 60 30" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+         <path fill="#012169" d="M0 0h60v30H0Z" />
+         <path fill="none" stroke="#fff" stroke-width="6" d="M0 0l60 30M60 0 0 30" />
+         <path fill="#c8102e" d="M0 0v2.25L25.5 15H30ZM60 0h-4.5L30 12.75V15ZM0 30h4.5L30 17.25V15ZM60 30v-2.25L34.5 15H30Z" />
+         <path fill="#fff" d="M0 10h60v10H0ZM25 0h10v30H25Z" />
+         <path fill="#c8102e" d="M0 12h60v6H0ZM27 0h6v30h-6Z" />
+      </svg>
+   )}
+</a>
 
 <style>
-   .language-switcher {
-      display: inline-flex;
-      align-items: center;
+   .language-flag {
+      display: block;
+      inline-size: 1.45rem;
+      block-size: 1.45rem;
       border: 1px solid var(--line);
-      border-radius: 99rem;
-      background: var(--surface);
-      color: var(--muted);
-   }
-
-   a {
-      display: grid;
-      position: relative;
-      min-inline-size: 2.75rem;
-      min-block-size: 2.75rem;
-      place-items: center;
-      border-radius: 99rem;
-      color: inherit;
-      font-size: 0.875rem;
-      font-weight: var(--weight-menu);
-      text-decoration: none;
-   }
-
-   a + a::before {
-      position: absolute;
-      inset-block: 32%;
-      inset-inline-start: 0;
-      border-inline-start: 1px solid var(--line);
-      content: '';
-   }
-
-   a:is([aria-current='page'], :hover, :focus-visible) {
-      color: var(--accent);
-      text-decoration: underline;
+      border-radius: 50%;
+      overflow: hidden;
    }
 </style>

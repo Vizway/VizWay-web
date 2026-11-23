@@ -1,5 +1,5 @@
 ---
-// Visar VizWays logotyp, huvudnavigation och temaväxling.
+// Visar logotyp och kontroller ovanför huvudnavigationen.
 import BrandLogo from './BrandLogo.astro';
 import LanguageSwitcher from './LanguageSwitcher.astro';
 import ThemeToggle from './ThemeToggle.astro';
@@ -19,7 +19,13 @@ const path = localizePath(locale, Astro.url.pathname);
 
 <header class="site-header">
    <div class="container header-inner">
-      <a class="brand" href={localizePath(locale, sitePaths.home)} aria-label={`${name}, ${ui.homeLink}`}><BrandLogo /></a>
+      <div class="header-brand">
+         <a class="brand" href={localizePath(locale, sitePaths.home)} aria-label={`${name}, ${ui.homeLink}`}><BrandLogo /></a>
+      </div>
+      <div class="header-options">
+         <ThemeToggle {locale} />
+         <LanguageSwitcher {locale} />
+      </div>
       <nav class="main-nav" aria-label={ui.mainNavigation}>
          <ul>
             {getSiteLinks(locale, ui.navigation).map(({ href, label, key }) => {
@@ -34,10 +40,6 @@ const path = localizePath(locale, Astro.url.pathname);
             })}
          </ul>
       </nav>
-      <div class="header-options">
-         <ThemeToggle {locale} />
-         <LanguageSwitcher {locale} />
-      </div>
    </div>
 </header>
 
@@ -46,11 +48,16 @@ const path = localizePath(locale, Astro.url.pathname);
       padding-block: 0.65rem;
    }
 
+   .header-brand {
+      container-type: inline-size;
+   }
+
    .brand {
-      --brand-size: clamp(3.5rem, 4.15vw, 4rem);
+      --brand-padding: clamp(0.35rem, 1.75vw, 0.65rem);
+      --brand-size: min(clamp(3.5rem, 4.15vw, 4rem), (100cqi - 2 * var(--brand-padding)) / 4);
       display: block;
       inline-size: fit-content;
-      padding: 0.3rem 0.65rem 0.4rem;
+      padding: 0.3rem var(--brand-padding) 0.4rem;
       border-radius: 0.4rem;
       background: light-dark(#0b1c30, transparent);
       text-decoration: none;
@@ -58,27 +65,10 @@ const path = localizePath(locale, Astro.url.pathname);
 
    .header-options {
       display: flex;
+      min-inline-size: calc(2 * var(--size-planet) + 0.5rem);
       align-items: center;
-      gap: 0.6rem;
-   }
-
-   @media (max-width: 48rem) {
-      .header-options {
-         grid-column: 2;
-         grid-row: 1;
-      }
-   }
-
-   @media (max-width: 34rem) {
-      .brand {
-         grid-column: 1 / -1;
-      }
-
-      .header-options {
-         grid-column: 1 / -1;
-         grid-row: 3;
-         justify-self: start;
-      }
+      justify-content: end;
+      gap: 0.5rem;
    }
 
    @media (max-width: 28rem) {

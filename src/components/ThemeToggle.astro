@@ -11,9 +11,14 @@ const { locale } = Astro.props;
 const ui = await loadUi(locale);
 ---
 
-<button class="theme-toggle" type="button" aria-pressed="false" data-theme-toggle hidden>
-   <span class="theme-icon" aria-hidden="true"></span>
-   {ui.darkTheme}
+<button class="theme-toggle planet-control" type="button" aria-label={ui.darkTheme} title={ui.darkTheme}
+   aria-pressed="false" data-theme-toggle hidden>
+   <svg class="theme-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" />
+      <path d="M12 2a10 10 0 0 1 0 20 5 5 0 0 1 0-10 5 5 0 0 0 0-10Z" fill="currentColor" />
+      <circle cx="12" cy="7" r="1.35" fill="currentColor" />
+      <circle cx="12" cy="17" r="1.35" fill="var(--surface)" />
+   </svg>
 </button>
 
 <script>
@@ -49,3 +54,14 @@ const ui = await loadUi(locale);
    button?.addEventListener('click', toggleTheme);
    systemTheme.addEventListener('change', syncButton);
 </script>
+
+<style>
+   .theme-toggle {
+      cursor: pointer;
+   }
+
+   .theme-icon {
+      inline-size: 1.55rem;
+      block-size: 1.55rem;
+   }
+</style>

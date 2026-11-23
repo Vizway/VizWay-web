@@ -15,6 +15,7 @@
    --weight-heading: 400;
    --weight-menu: 400;
    --size-menu: 0.9375rem;
+   --size-planet: 2.75rem;
    --leading-prose: 1.65;
    --measure-prose: 65ch;
    font-family: var(--font-body);
@@ -145,10 +146,13 @@ a:hover {
 
 .header-inner {
    display: grid;
-   min-height: 5rem;
-   grid-template-columns: auto 1fr auto;
-   align-items: center;
-   gap: 1rem clamp(1rem, 4vw, 3.5rem);
+   grid-template-columns: minmax(0, 1fr) auto;
+   align-items: start;
+   gap: 0.35rem clamp(0.5rem, 2vw, 1.25rem);
+}
+
+.main-nav {
+   grid-column: 1 / -1;
 }
 
 .main-nav ul {
@@ -175,36 +179,21 @@ a:hover {
    text-decoration: underline;
 }
 
-.theme-toggle {
-   display: inline-flex;
-   min-height: 2.65rem;
-   align-items: center;
-   justify-content: center;
-   gap: 0.4rem;
-   padding: 0.35rem 0.75rem;
-   border: 1px solid var(--line);
-   border-radius: 99rem;
-   background: var(--surface);
-   color: var(--ink);
-   font: inherit;
-   font-size: 0.875rem;
-   font-weight: var(--weight-menu);
-   cursor: pointer;
-   white-space: nowrap;
-}
-
-.theme-toggle:is(:hover, [aria-pressed='true']) {
-   border-color: var(--accent);
-   background: var(--accent-surface);
+.planet-control {
+   display: inline-grid;
+   flex: none;
+   inline-size: var(--size-planet);
+   block-size: var(--size-planet);
+   place-items: center;
+   padding: 0;
+   border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--line));
+   border-radius: 50%;
+   background: radial-gradient(circle at 35% 25%, var(--accent-surface), var(--surface) 78%);
    color: var(--accent);
 }
 
-.theme-icon {
-   width: 0.85rem;
-   height: 0.85rem;
-   border: 1px solid currentColor;
-   border-radius: 50%;
-   background: linear-gradient(90deg, currentColor 50%, transparent 50%);
+.planet-control:is(:hover, [aria-pressed='true']) {
+   border-color: var(--accent);
 }
 
 
@@ -296,17 +285,6 @@ a:hover {
 }
 
 @media (max-width: 48rem) {
-   .header-inner {
-      grid-template-columns: 1fr auto;
-      row-gap: 0.35rem;
-      padding-block: 0.75rem 0.4rem;
-   }
-
-   .main-nav {
-      grid-column: 1 / -1;
-      grid-row: 2;
-   }
-
    .main-nav ul {
       column-gap: clamp(0.65rem, 3vw, 1.5rem);
    }

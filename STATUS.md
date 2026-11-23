@@ -1,4 +1,32 @@
-# Engelsk språkversion, 23 november 2026
+# Sidhuvud och systemstatus, 23 november 2026
+
+Uppdrag 009a är genomfört och verifierat lokalt.
+
+## Genomförda ändringar
+
+- Sidhuvudet använder CSS Grid. Logotypen, temaknappen och språkvalet ligger på första raden. Huvudmenyn ligger under och radbryts vid behov.
+- Temaknappen har en yin-yang-symbol, en lokaliserad etikett och en markerad status för mörkt tema. Språkvalet visar det aktiva språkets flagga och länkar till samma sida på det andra språket. Båda kontrollerna är 44 × 44 pixlar med standardinställd textstorlek.
+- Tillbakalänken ligger till vänster och statusetiketten till höger på systemsidorna. Etikettens färger, texter och utvecklingsstatus har bevarats.
+
+## Verifiering
+
+- `npm run build` byggde 18 sidor. Testade samtliga sidor i Chrome vid 320, 390, 560, 768 och 1 440 pixlar i båda språken och temana.
+- Verifierade att huvudmenyn ligger under första raden, att kontrollerna håller sin position vid språk- och temabyte och att första raden ryms utan överlappning eller horisontell rullning.
+- Testade språkbyte åt båda hållen för alla nio sidpar. Verifierade temaväxling, sparat tema, synligt tangentbordsfokus och systemkortens hela klickyta.
+- Jämförde alla sidors innehåll, metadata och befintliga länkmål med referensbygget. Startsidornas hero-layout och bakgrund hade samma mått.
+
+## Ändrade filer
+
+- `src/components/SiteHeader.astro`, `src/components/ThemeToggle.astro` och `src/components/LanguageSwitcher.astro`.
+- `src/layouts/SystemLayout.astro` och `src/styles/global.css`.
+- `STATUS.md`.
+
+## Visuella avvikelser
+
+- Vid 320 pixlar skalas sidhuvudets logotyp ned proportionellt och den engelska huvudmenyn använder två rader under kontrollerna.
+- Startsidornas helskärmslayout behåller sitt fristående språkval, som nu visas med flagga.
+
+# Tidigare status för engelsk språkversion, 23 november 2026
 
 Uppdrag 009 är genomfört och verifierat lokalt. Punkt 004 i [ATT-GÖRA.md](_doc/ATT-GÖRA.md) inväntar manuellt godkännande.
 
