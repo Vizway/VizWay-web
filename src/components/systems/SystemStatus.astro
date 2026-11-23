@@ -1,14 +1,16 @@
 ---
 // Visar systemets utvecklingsstatus med text och färg.
 import type { CollectionEntry } from 'astro:content';
-import { systemStatuses } from '../../lib/system-status';
+import { loadUi } from '../../lib/i18n';
+import type { Locale } from '../../lib/i18n';
 
-type Props = Pick<CollectionEntry<'systems'>['data'], 'status' | 'example'>;
+type Props = Pick<CollectionEntry<'systems'>['data'], 'status' | 'example'> & { locale: Locale };
 
-const { status, example } = Astro.props;
+const { status, example, locale } = Astro.props;
+const ui = await loadUi(locale);
 ---
 
-<span class:list={['status', status]}>{systemStatuses[status]}{example && ' · Exempel'}</span>
+<span class:list={['status', status]}>{ui.statuses[status]}{example && ` · ${ui.example}`}</span>
 
 <style>
    .status {

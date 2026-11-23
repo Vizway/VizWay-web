@@ -4,18 +4,22 @@ import type { CollectionEntry } from 'astro:content';
 import SystemBanner from '../components/systems/SystemBanner.astro';
 import SystemStatus from '../components/systems/SystemStatus.astro';
 import SystemFrame from './SystemFrame.astro';
+import { loadUi, localizePath } from '../lib/i18n';
+import type { Locale } from '../lib/i18n';
+import { sitePaths } from '../lib/site-navigation';
 
-type Props = Pick<CollectionEntry<'systems'>['data'], 'title' | 'description' | 'status' | 'example'>;
+type Props = Pick<CollectionEntry<'systems'>['data'], 'title' | 'description' | 'status' | 'example'> & { locale: Locale };
 
-const { title, description, status, example } = Astro.props;
+const { title, description, status, example, locale } = Astro.props;
+const ui = await loadUi(locale);
 ---
 
-<SystemFrame {title} {description}>
+<SystemFrame {title} {description} {locale}>
    <article>
       <SystemBanner {title}>
          <div class="project-navigation" slot="eyebrow">
-            <a href="/system/">Alla system</a>
-            <SystemStatus {status} {example} />
+            <a href={localizePath(locale, sitePaths.system)}>{ui.allSystems}</a>
+            <SystemStatus {status} {example} {locale} />
          </div>
          <p>{description}</p>
       </SystemBanner>

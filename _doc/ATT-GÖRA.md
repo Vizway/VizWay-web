@@ -68,18 +68,19 @@ Punkterna 001–003 är verifierade i det lokala bygget för uppdrag 007.
 ## P2 – Planerade förbättringar
 
 ### 004 – Engelskspråkig webbplats
-**Status:** Öppen
+**Status:** Pågår
 - [ ] **Logotypens bakgrund:** Säkerställ att hela sloganen ryms inom logotypens bakgrund vid samtliga fönsterstorlekar. Kontrollera särskilt ljust tema. Behåll nuvarande proportioner och design.
-- [ ] Inför svenska och engelska som språkval.
-- [ ] Behåll svenska som standardspråk.
-- [ ] Skapa engelska versioner av Start, System, Om VizWay och Kontakt.
-- [ ] Översätt systembeskrivningar och statusbeteckningar.
-- [ ] Behåll produktnamn och VizWays slogan oförändrade.
-- [ ] Använd separata, redigerbara innehållsfiler för varje språk.
-- [ ] Lägg till ett diskret språkval i det gemensamma gränssnittet.
-- [ ] Använd konsekventa webbadresser, exempelvis `/en/` för engelska.
-- [ ] Ange korrekt HTML-språk och språkalternativ för sökmotorer.
-- [ ] Behåll aktuell sida vid språkbyte när motsvarande översättning finns.
+- [x] Inför svenska och engelska som språkval.
+- [x] Behåll svenska som standardspråk.
+- [x] Skapa engelska versioner av Start, System, Om VizWay och Kontakt.
+- [x] Översätt systembeskrivningar och statusbeteckningar.
+- [x] Behåll produktnamn och VizWays slogan oförändrade.
+- [x] Använd separata, redigerbara innehållsfiler för varje språk.
+- [x] Lägg till ett diskret språkval i det gemensamma gränssnittet.
+- [x] Använd konsekventa webbadresser, exempelvis `/en/` för engelska.
+- [x] Ange korrekt HTML-språk och språkalternativ för sökmotorer.
+- [x] Behåll aktuell sida vid språkbyte när motsvarande översättning finns.
+- [ ] Godkänn den engelska språkversionen efter manuell granskning.
 
 **Mål:** En internationellt användbar webbplats utan duplicerad programlogik.
 

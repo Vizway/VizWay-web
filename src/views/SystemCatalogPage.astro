@@ -1,0 +1,42 @@
+---
+// Grupperar system efter kategori och sorterar dem enligt innehållets metadata.
+import SystemBanner from '../components/systems/SystemBanner.astro';
+import SystemSection from '../components/systems/SystemSection.astro';
+import SystemFrame from '../layouts/SystemFrame.astro';
+import { loadPage, loadSystems } from '../lib/content';
+import { loadUi } from '../lib/i18n';
+import type { Locale } from '../lib/i18n';
+
+interface Props {
+   locale: Locale;
+}
+
+const { locale } = Astro.props;
+const { title, description, Content } = await loadPage('system', locale);
+const ui = await loadUi(locale);
+const projects = (await loadSystems(locale)).sort(({ data: first }, { data: second }) =>
+   first.order - second.order || first.title.localeCompare(second.title, locale),
+);
+const categories = ['tillampningar', 'teknik'] as const;
+---
+
+<SystemFrame {title} {description} {locale}>
+   <SystemBanner {title} diagram>
+      <p class="section-label" slot="eyebrow">{ui.systemKicker}</p>
+      <Content />
+   </SystemBanner>
+   <div class="container system-catalog">
+      {categories.map(id => {
+         const matches = projects.filter(({ data }) => data.category === id);
+         return matches.length > 0 && <SystemSection {id} title={ui.categories[id]} projects={matches} {locale} />;
+      })}
+   </div>
+</SystemFrame>
+
+<style>
+   .system-catalog {
+      display: grid;
+      gap: clamp(2.15rem, 4.2vw, 3.65rem);
+      padding-block: clamp(1.75rem, 3.4vw, 3.15rem) clamp(2.75rem, 6vw, 5.5rem);
+   }
+</style>

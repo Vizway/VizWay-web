@@ -1,0 +1,12 @@
+---
+// Bygger den lokaliserade systemsidan via den gemensamma systemmallen.
+import type { GetStaticPaths } from 'astro';
+import { getSystemPaths } from '../../../lib/content';
+import SystemDetailPage from '../../../views/SystemDetailPage.astro';
+
+
+// Hämtar systemposterna för denna språkadress.
+export const getStaticPaths = (async () => getSystemPaths('en')) satisfies GetStaticPaths;
+---
+
+<SystemDetailPage locale="en" project={Astro.props.project} />

@@ -1,0 +1,26 @@
+language: Language
+skip: Skip to content
+mainNavigation: Main navigation
+sitemap: Sitemap
+homeLink: home
+darkTheme: Dark theme
+explore: Explore!
+email: "Email:"
+contactPending: Contact details will be available later.
+systemKicker: VIZWAY / SYSTEMS
+allSystems: All systems
+readSystem: Read about the system
+projectSteps: Project stages
+example: Example
+navigation:
+   home: Home
+   system: Systems
+   about: About VizWay
+   contact: Contact
+categories:
+   tillampningar: Systems and applications
+   teknik: Technology and platforms
+statuses:
+   fardig: Complete
+   utveckling: In development
+   ide: Future idea

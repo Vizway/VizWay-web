@@ -1,22 +1,26 @@
 ---
 // Visar webbplatsens sidkarta och copyrightlänk till Kontakt.
-import { siteLinks } from '../lib/site-navigation';
+import { getSiteLinks, sitePaths } from '../lib/site-navigation';
+import { loadUi, localizePath } from '../lib/i18n';
+import type { Locale } from '../lib/i18n';
 
 interface Props {
    name: string;
+   locale: Locale;
 }
 
-const { name } = Astro.props;
+const { name, locale } = Astro.props;
+const ui = await loadUi(locale);
 ---
 
 <footer class="site-footer">
    <div class="container footer-inner">
-      <nav aria-label="Sidkarta">
+      <nav aria-label={ui.sitemap}>
          <ul>
-            {siteLinks.map(({ href, label }) => <li><a {href}>{label}</a></li>)}
+            {getSiteLinks(locale, ui.navigation).map(({ href, label }) => <li><a {href}>{label}</a></li>)}
          </ul>
       </nav>
-      <p class="copyright">© <a href="/kontakt/">{name}</a></p>
+      <p class="copyright">© <a href={localizePath(locale, sitePaths.contact)}>{name}</a></p>
    </div>
 </footer>
 

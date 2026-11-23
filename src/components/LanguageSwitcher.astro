@@ -1,0 +1,57 @@
+---
+// Visar länkar till samma sida på båda språken.
+import { getLanguageLinks, loadUi } from '../lib/i18n';
+import type { Locale } from '../lib/i18n';
+
+interface Props {
+   locale: Locale;
+}
+
+const { locale } = Astro.props;
+const ui = await loadUi(locale);
+const links = getLanguageLinks(Astro.url.pathname);
+---
+
+<nav class="language-switcher" aria-label={ui.language}>
+   {links.map(link => (
+      <a href={link.href} lang={link.locale} hreflang={link.locale} aria-label={link.name}
+         aria-current={link.locale === locale ? 'page' : undefined}>{link.locale.toUpperCase()}</a>
+   ))}
+</nav>
+
+<style>
+   .language-switcher {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 99rem;
+      background: var(--surface);
+      color: var(--muted);
+   }
+
+   a {
+      display: grid;
+      position: relative;
+      min-inline-size: 2.75rem;
+      min-block-size: 2.75rem;
+      place-items: center;
+      border-radius: 99rem;
+      color: inherit;
+      font-size: 0.875rem;
+      font-weight: var(--weight-menu);
+      text-decoration: none;
+   }
+
+   a + a::before {
+      position: absolute;
+      inset-block: 32%;
+      inset-inline-start: 0;
+      border-inline-start: 1px solid var(--line);
+      content: '';
+   }
+
+   a:is([aria-current='page'], :hover, :focus-visible) {
+      color: var(--accent);
+      text-decoration: underline;
+   }
+</style>

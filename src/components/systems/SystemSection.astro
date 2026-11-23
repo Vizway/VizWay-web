@@ -1,21 +1,23 @@
 ---
 // Samlar en projektkategori under en rubrik i ett responsivt rutnät.
-import type { CollectionEntry } from 'astro:content';
 import SystemCard from './SystemCard.astro';
+import type { LocalizedSystem } from '../../lib/content';
+import type { Locale } from '../../lib/i18n';
 
 interface Props {
-   id: CollectionEntry<'systems'>['data']['category'];
+   id: LocalizedSystem['data']['category'];
    title: string;
-   projects: CollectionEntry<'systems'>[];
+   projects: LocalizedSystem[];
+   locale: Locale;
 }
 
-const { id, title, projects } = Astro.props;
+const { id, title, projects, locale } = Astro.props;
 ---
 
 <section aria-labelledby={id}>
    <h2 id={id}>{title}</h2>
    <ul class="project-grid" role="list">
-      {projects.map((system) => <li><SystemCard system={system} /></li>)}
+      {projects.map(system => <li><SystemCard {system} {locale} /></li>)}
    </ul>
 </section>
 

@@ -1,0 +1,19 @@
+---
+// Renderar en lokaliserad Markdown-post i den gemensamma systemmallen.
+import { render } from 'astro:content';
+import SystemLayout from '../layouts/SystemLayout.astro';
+import type { LocalizedSystem } from '../lib/content';
+import type { Locale } from '../lib/i18n';
+
+interface Props {
+   project: LocalizedSystem;
+   locale: Locale;
+}
+
+const { project, locale } = Astro.props;
+const { Content } = await render(project.entry);
+---
+
+<SystemLayout {...project.data} {locale}>
+   <Content />
+</SystemLayout>

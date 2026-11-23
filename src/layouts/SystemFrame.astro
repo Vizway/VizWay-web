@@ -1,16 +1,18 @@
 ---
 // Ger systemöversikten och projektsidorna gemensamma färgytor.
 import BaseLayout from './BaseLayout.astro';
+import type { Locale } from '../lib/i18n';
 
 interface Props {
    title: string;
    description: string;
+   locale: Locale;
 }
 
-const { title, description } = Astro.props;
+const { title, description, locale } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout {title} {description} {locale}>
    <div class="system-frame">
       <slot />
    </div>

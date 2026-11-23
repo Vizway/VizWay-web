@@ -41,6 +41,22 @@ Redigera rubriken i YAML-fältet `title` och sidans beskrivning i `description`.
 
 Ändra kontaktsidans adress i YAML-fältet `email` i `kontakt.md`. Adressen visas som text och används som mål för e-postlänken. Fältet `signature` innehåller den avslutande signaturen. Godkända textunderlag för Om VizWay och Kontakt ligger i `_doc/`.
 
+## Redigera och verifiera språkversionerna
+
+Astros språkstyrning finns i `astro.config.mjs`. Svenska är standardspråk. Engelska använder prefixet `/en/` och samma sökväg efter prefixet, till exempel `/om/` och `/en/om/`. Sidfilerna i `src/pages/` väljer språk. Komponenterna i `src/views/` och `src/layouts/` används av båda versionerna.
+
+| Innehåll | Svenska | Engelska |
+| --- | --- | --- |
+| Start, System, Om VizWay och Kontakt | `src/content/pages/` | `src/content/en/pages/` |
+| Systemens texter | `src/content/systems/` | `src/content/en/systems/` |
+| Menytexter, kategorier, statusnamn och andra etiketter | `src/content/ui/sv.yaml` | `src/content/ui/en.yaml` |
+
+Redigera `title`, `description` och brödtexten i rätt språkfil. Båda kontaktsidorna hämtar e-postadressen från svenska `kontakt.md`. Produktnamn och slogan används på båda språken.
+
+`src/lib/i18n.ts` använder Astros språklänkar för att skapa adresserna till samma sida på svenska och engelska. Språkvalet och sidans `hreflang` använder samma adresspar. Sidramen sätter `lang` och den kanoniska adressen med den domän som anges i Astro-konfigurationen.
+
+Kör `npm run build` och öppna båda adresserna från `dist/` över lokal HTTP. Byt språk åt båda hållen och kontrollera sidtitel, metabeskrivning, meny, sidfot och länkar. Testa smala och breda fönster i båda temana.
+
 ## Redigera typografin
 
 De gemensamma inställningarna finns i `src/styles/global.css`.
@@ -60,7 +76,7 @@ Startsidans rubrik och logotypens typografi styrs i sina egna komponenter. Anvä
 
 ## Redigera sidhuvud och sidfot
 
-Huvudnavigationen och sidfotens sidkarta hämtar sina länkar från `src/lib/site-navigation.ts`. `SiteHeader.astro` visar logotypen och temaväxlingen. `SiteFooter.astro` visar sidkartan och länken från **© VizWay** till Kontakt. De gemensamma bandfärgerna finns i `src/styles/global.css`. Startsidan visar logotypen i hero-delen och har egen navigation via **Utforska!**.
+Huvudnavigationen och sidfotens sidkarta hämtar sina adresser från `src/lib/site-navigation.ts` och sina texter från språkets YAML-fil. `SiteHeader.astro` visar logotypen, temaväxlingen och språkvalet. `SiteFooter.astro` visar sidkartan och länken från **© VizWay** till Kontakt. De gemensamma bandfärgerna finns i `src/styles/global.css`. Startsidan visar språkvalet i övre hörnet och använder **Utforska!** eller **Explore!** för att öppna systemöversikten.
 
 ## Redigera startsidans hero
 
@@ -71,7 +87,7 @@ Huvudnavigationen och sidfotens sidkarta hämtar sina länkar från `src/lib/sit
 | Rubrik och vers | Ändra den vita delen i `title` och den turkosa delen i `heroAccent` i `src/content/pages/start.md`. Skriv varje versrad som ett eget stycke med en tom rad mellan styckena. |
 | Placering och avstånd | Ändra ordningen, rutnätet och avstånden i `src/components/hero/Hero.astro`. Låt HTML-ordningen följa läsordningen. |
 | Färger, typsnitt och textstorlek | Ändra gemensamma färger och det lokala typsnittet i `Hero.astro`. Ändra textstorlek i `HeroTitle.astro`, `HeroText.astro` och `HeroExplore.astro`. |
-| Utforska-länken | Ändra länktext, mål och utseende i `src/components/hero/HeroExplore.astro`. |
+| Utforska-länken | Ändra `explore` i språkets gränssnittsfil. `src/components/hero/HeroExplore.astro` hämtar systemöversiktens adress och anger länkens utseende. |
 
 ## Lägg till, ändra eller kategorisera ett system
 
@@ -79,7 +95,8 @@ Huvudnavigationen och sidfotens sidkarta hämtar sina länkar från `src/lib/sit
 2. Lägg till YAML-blocket nedan. `title` och `description` visas både på kortet och på systemsidan.
 3. Välj kategori och status i tabellerna nedan. Ange ett lägre `order` för att visa systemet tidigare i sin kategori. Vid samma värde sorteras projekten efter svensk titel.
 4. Använd rubrikerna `## Syfte och tänkt användning`, `## Nuvarande utveckling` och `## Framtida möjligheter` i brödtexten. Beskriv verifierade funktioner och pågående arbete under nuvarande utveckling. Beskriv planerade funktioner under framtida möjligheter.
-5. Ändra en befintlig post i samma fil för att behålla dess adress. Kör `npm run build` och kontrollera kortets kategori, status och länk på `/system/`.
+5. Skapa en engelsk fil med samma filnamn i `src/content/en/systems/`. Översätt `title`, `description`, brödtext och eventuellt `flow`. Status, kategori och ordning hämtas från den svenska posten.
+6. Ändra en befintlig post i samma fil för att behålla dess adress. Kör `npm run build` och kontrollera både `/system/` och `/en/system/`. Bygget ger ett fel om någon av systemets två språkfiler saknas.
 
 ```yaml
 ---
@@ -111,9 +128,10 @@ Om `category` eller `order` saknas används `tillampningar` respektive `100`. De
 | `src/content/` | Sidtexter, systemposter och identitet |
 | `src/content.config.ts` | Läser in och validerar innehåll och metadata |
 | `src/pages/` | Webbplatsens adresser och sidornas sammansättning |
+| `src/views/` | Delade sidkomponenter för svenska och engelska |
 | `src/layouts/` | Gemensam sidram samt mallar för informationssidor och systemsidor |
 | `src/components/` | Gemensam logotyp, sidhuvud, sidfot, temaväxling, startsidans hero och systemkort |
-| `src/lib/` | Innehållshämtning, systemstatus och gemensamma navigationslänkar |
+| `src/lib/` | Innehållshämtning, språkstyrning och gemensamma navigationslänkar |
 | `src/styles/global.css` | Färger, typografi, ljust och mörkt tema samt responsiv layout |
 | `_doc/img/` | Designreferenser för lokal dokumentation |
 

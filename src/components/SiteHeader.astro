@@ -1,28 +1,32 @@
 ---
 // Visar VizWays logotyp, huvudnavigation och temaväxling.
 import BrandLogo from './BrandLogo.astro';
+import LanguageSwitcher from './LanguageSwitcher.astro';
 import ThemeToggle from './ThemeToggle.astro';
-import { siteLinks } from '../lib/site-navigation';
+import { getSiteLinks, sitePaths } from '../lib/site-navigation';
+import { loadUi, localizePath } from '../lib/i18n';
+import type { Locale } from '../lib/i18n';
 
 interface Props {
    name: string;
+   locale: Locale;
 }
 
-const { name } = Astro.props;
-const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const { name, locale } = Astro.props;
+const ui = await loadUi(locale);
+const path = localizePath(locale, Astro.url.pathname);
 ---
 
 <header class="site-header">
    <div class="container header-inner">
-      <a class="brand" href="/" aria-label={`${name}, startsida`}><BrandLogo /></a>
-      <nav class="main-nav" aria-label="Huvudnavigation">
+      <a class="brand" href={localizePath(locale, sitePaths.home)} aria-label={`${name}, ${ui.homeLink}`}><BrandLogo /></a>
+      <nav class="main-nav" aria-label={ui.mainNavigation}>
          <ul>
-            {siteLinks.map(({ href, label }) => {
-               const target = href.replace(/\/$/, '') || '/';
-               const current = path === target ? 'page' : undefined;
+            {getSiteLinks(locale, ui.navigation).map(({ href, label, key }) => {
+               const current = path === href ? 'page' : undefined;
                return (
                   <li>
-                     <a href={href} aria-current={current} class:list={[{ 'in-section': target === '/system' && path.startsWith('/system/') }]}>
+                     <a {href} aria-current={current} class:list={[{ 'in-section': key === 'system' && !current && path.startsWith(href) }]}>
                         {label}
                      </a>
                   </li>
@@ -30,7 +34,10 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
             })}
          </ul>
       </nav>
-      <ThemeToggle />
+      <div class="header-options">
+         <ThemeToggle {locale} />
+         <LanguageSwitcher {locale} />
+      </div>
    </div>
 </header>
 
@@ -49,23 +56,38 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
       text-decoration: none;
    }
 
-   @media (max-width: 28rem) {
+   .header-options {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+   }
+
+   @media (max-width: 48rem) {
+      .header-options {
+         grid-column: 2;
+         grid-row: 1;
+      }
+   }
+
+   @media (max-width: 34rem) {
       .brand {
          grid-column: 1 / -1;
       }
 
+      .header-options {
+         grid-column: 1 / -1;
+         grid-row: 3;
+         justify-self: start;
+      }
+   }
+
+   @media (max-width: 28rem) {
       .main-nav ul {
          column-gap: clamp(0.35rem, 2.25vw, 0.7rem);
       }
 
       .main-nav a {
          font-size: 0.875rem;
-      }
-
-      .header-inner :global(.theme-toggle) {
-         grid-column: 1 / -1;
-         grid-row: 3;
-         justify-self: start;
       }
    }
 </style>

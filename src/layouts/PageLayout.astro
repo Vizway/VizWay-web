@@ -1,17 +1,19 @@
 ---
 // Ger informationssidor en gemensam rubrik och innehållsyta.
 import BaseLayout from './BaseLayout.astro';
+import type { Locale } from '../lib/i18n';
 
 interface Props {
    title: string;
    description: string;
+   locale: Locale;
    warm?: boolean;
 }
 
-const { title, description, warm = false } = Astro.props;
+const { title, description, locale, warm = false } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout {title} {description} {locale}>
    <article class:list={['editorial-page', { warm }]}>
       <div class="container page-content">
          <header class="page-heading">

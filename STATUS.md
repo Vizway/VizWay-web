@@ -1,4 +1,31 @@
-# Visuell och typografisk förfining, 23 november 2026
+# Engelsk språkversion, 23 november 2026
+
+Uppdrag 009 är genomfört och verifierat lokalt. Punkt 004 i [ATT-GÖRA.md](_doc/ATT-GÖRA.md) inväntar manuellt godkännande.
+
+## Genomförda ändringar
+
+- Svenska finns kvar på de ursprungliga adresserna. Alla nio sidor har en engelsk motsvarighet under `/en/`. Språket väljs med **SV | EN**, som länkar till samma sida på det andra språket.
+- Båda språkversionerna använder gemensamma Astro-komponenter och CSS. Systemens identifierare, status, kategori och ordning hämtas från de svenska posterna. Kontaktadressen används på båda språken.
+- Sidramen anger sidans språk, titel, beskrivning, kanoniska adress och språkalternativ för svenska och engelska.
+
+## Nya filer och komponenter
+
+- `astro.config.mjs` konfigurerar Astros statiska språkstyrning. `src/lib/i18n.ts` skapar översatta länkar och hämtar etiketter. `src/components/LanguageSwitcher.astro` visar språkvalet.
+- Engelska sidfiler finns under `src/pages/en/`. Delade sidkomponenter finns i `src/views/`. Svenska och engelska adresser använder samma komponenter.
+- Nio engelska Markdown-filer finns i `src/content/en/`. Gränssnittstexter finns i `src/content/ui/sv.yaml` och `src/content/ui/en.yaml`. [README.md](README.md) beskriver hur språkversionerna underhålls.
+
+## Verifiering
+
+- `npm run build` byggde 18 statiska HTML-sidor. En lokal HTTP-server verifierade samtliga sidor, länkar och resurser, båda språkens metadata och att webbläsarens språkpreferens inte ändrar sidans språk.
+- Testade samtliga nio sidpar i båda riktningarna i Chrome vid 320, 390, 768 och 1 440 pixlar i ljust och mörkt tema. Verifierade pekare, tryck och tangentbord, sparat tema, systemkortens hela klickyta och att texter rymdes utan horisontell rullning.
+- Jämförde de nio svenska sidornas innehåll och befintliga länkmål med referensbygget. Startsidans komposition och bakgrund hade samma mått.
+
+## Kända avvikelser och kvarstående arbete
+
+- Den engelska versen har något mindre typgrad och normal teckenspärr vid högst 22 rem för att behålla fyra rader. Svenska använder sina tidigare typografiska regler.
+- Manuell granskning och godkännande av den engelska språkversionen återstår.
+
+# Tidigare status för visuell och typografisk förfining, 23 november 2026
 
 Uppdrag 008 är genomfört och verifierat lokalt. Punkt 006 i [ATT-GÖRA.md](_doc/ATT-GÖRA.md) inväntar manuellt godkännande.
 

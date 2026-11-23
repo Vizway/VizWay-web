@@ -1,0 +1,17 @@
+---
+// Visar VizWays verksamhetsbeskrivning från Markdown.
+import PageLayout from '../layouts/PageLayout.astro';
+import { loadPage } from '../lib/content';
+import type { Locale } from '../lib/i18n';
+
+interface Props {
+   locale: Locale;
+}
+
+const { locale } = Astro.props;
+const { title, description, Content } = await loadPage('om', locale);
+---
+
+<PageLayout {title} {description} {locale} warm>
+   <Content />
+</PageLayout>

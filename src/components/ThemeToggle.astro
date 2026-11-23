@@ -1,10 +1,19 @@
 ---
 // Visar en tillgänglig knapp som växlar mellan ljust och mörkt tema.
+import { loadUi } from '../lib/i18n';
+import type { Locale } from '../lib/i18n';
+
+interface Props {
+   locale: Locale;
+}
+
+const { locale } = Astro.props;
+const ui = await loadUi(locale);
 ---
 
 <button class="theme-toggle" type="button" aria-pressed="false" data-theme-toggle hidden>
    <span class="theme-icon" aria-hidden="true"></span>
-   Mörkt tema
+   {ui.darkTheme}
 </button>
 
 <script>

@@ -1,9 +1,19 @@
 ---
 // Länkar från startsidan till systemöversikten.
+import { loadUi, localizePath } from '../../lib/i18n';
+import type { Locale } from '../../lib/i18n';
+import { sitePaths } from '../../lib/site-navigation';
+
+interface Props {
+   locale: Locale;
+}
+
+const { locale } = Astro.props;
+const ui = await loadUi(locale);
 ---
 
-<a href="/system/">
-   Utforska!
+<a href={localizePath(locale, sitePaths.system)}>
+   {ui.explore}
    <svg viewBox="0 0 24 16" aria-hidden="true">
       <path d="M2 8h19m-6-6 6 6-6 6" />
    </svg>

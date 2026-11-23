@@ -1,30 +1,36 @@
 ---
 // Visar en projektpost där hela kortet är en länk till systemsidan.
-import type { CollectionEntry } from 'astro:content';
+import type { LocalizedSystem } from '../../lib/content';
+import { loadUi, localizePath } from '../../lib/i18n';
+import type { Locale } from '../../lib/i18n';
+import { sitePaths } from '../../lib/site-navigation';
 import SystemStatus from './SystemStatus.astro';
 
 interface Props {
-   system: CollectionEntry<'systems'>;
+   system: LocalizedSystem;
+   locale: Locale;
 }
 
-const { system: { id, data } } = Astro.props;
+const { system: { id, data }, locale } = Astro.props;
 const { title, description, status, category, flow, example } = data;
+const ui = await loadUi(locale);
 ---
 
 <article class="project-card">
-   <a class="project-link" href={`/system/${id}/`} aria-labelledby={`project-action-${id} project-title-${id}`}>
+   <a class="project-link" href={localizePath(locale, `${sitePaths.system}${id}/`)}
+      aria-labelledby={`project-action-${id} project-title-${id}`}>
       <div class="card-meta">
          <span class:list={['project-mark', category]} aria-hidden="true"></span>
-         <SystemStatus status={status} example={example} />
+         <SystemStatus {status} {example} {locale} />
       </div>
       <h3 id={`project-title-${id}`}>{title}</h3>
       <p>{description}</p>
       {flow && (
-         <ol class="project-flow" aria-label="Projektets delar" role="list">
+         <ol class="project-flow" aria-label={ui.projectSteps} role="list">
             {flow.map((step) => <li>{step}</li>)}
          </ol>
       )}
-      <span class="project-action" id={`project-action-${id}`}>Läs om systemet</span>
+      <span class="project-action" id={`project-action-${id}`}>{ui.readSystem}</span>
    </a>
 </article>
 

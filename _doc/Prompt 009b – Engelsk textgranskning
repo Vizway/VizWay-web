@@ -1,0 +1,126 @@
+
+---
+id: prompt-009b
+projekt: VizWay-web
+typ: revision
+reviderar: prompt-009
+status: aktuell
+---
+
+# Uppdrag 009b – Engelsk textgranskning
+
+## 1. Syfte
+Förbättra de engelska texterna efter genomförd språkgranskning.
+
+Läs AGENTS.md, README.md och STATUS.md.
+Kontrollera git status före arbetet.
+
+Detta är en begränsad språkrevision.
+Ändra inte svensk text, design eller webbplatsens struktur.
+
+## 2. Startsidan
+Behåll rubriken:
+"We see possibilities"
+
+Ändra första versraden till:
+"In every obstacle, we see a path forward"
+
+Behåll övriga tre rader:
+"From vision, direction emerges"
+"From direction, systems take shape"
+"And everything points forward"
+
+Behåll befintliga radbrytningar och typografi.
+
+## 3. Om VizWay
+Ändra formuleringen:
+"We aim to build well-considered systems"
+
+Till:
+"We aim to build thoughtfully designed systems"
+
+Bevara resten av meningens betydelse.
+
+Ändra HTML-sidtiteln till:
+"About VizWay | VizWay"
+
+## 4. VizOS
+Ändra:
+"A reproducible and controllable IT environment"
+
+Till:
+"A reproducible and manageable IT environment"
+
+Använd samma formulering i ingress och kortbeskrivning där det är lämpligt.
+
+Behåll den tekniska innebörden.
+
+## 5. Status – Concept
+Ändra den engelska beteckningen:
+"Future idea" → "Concept"
+
+Ändringen gäller den gemensamma översättningen av statusvärdet `ide`.
+
+Behåll:
+- Det interna statusvärdet `ide`.
+- Den svenska beteckningen "Framtida idé".
+- Befintliga statusfärger och funktioner.
+
+Ändra inte projektens faktiska utvecklingsstatus.
+
+## 6. KvittoApp – OCR och SIE
+Förklara SIE-formatet kort vid första relevanta omnämnandet.
+
+Föreslagen förklaring:
+"SIE is a Swedish standard for exchanging accounting data between bookkeeping systems."
+
+Integrera förklaringen naturligt i den engelska systembeskrivningen.
+
+Behåll tydlig information om att OCR → SIE fortfarande är under utveckling.
+
+Presentera inte funktioner som färdiga utan verifiering.
+
+## 7. Bygga Välstånd
+Behåll produktnamnet "Bygga Välstånd".
+
+Lägg till en kort förklaring av namnet vid första relevanta omnämnandet:
+
+"Bygga Välstånd (Building Prosperity)"
+
+Använd inte det engelska uttrycket som nytt produktnamn.
+
+Ändra inte övrig ekonomisk information eller utvecklingsstatus.
+
+## 8. Övriga sidor
+Granska de nio engelska sidorna för:
+- Språklig konsekvens.
+- Naturliga engelska formuleringar.
+- Enhetliga benämningar.
+- Korrekt stavning.
+- Oavsiktligt kvarvarande svenska gränssnittstexter.
+
+Behåll befintliga formuleringar om de redan fungerar bra.
+
+Gör inga omfattande omskrivningar.
+
+## 9. Verifiering
+1. Kör npm run build.
+2. Kontrollera att alla 18 språkversioner byggs.
+3. Kontrollera engelska sidtitlar och metabeskrivningar.
+4. Kontrollera att svenska sidor är oförändrade.
+5. Kontrollera att systemstatus översätts korrekt.
+6. Kontrollera att språkväxling och länkar fungerar.
+7. Kontrollera att de engelska texterna inte kapas på mobil.
+
+## 10. Dokumentation
+Uppdatera STATUS.md med genomförda språkändringar.
+
+Ändra inte tidigare promptfiler.
+Gör ingen Git-commit.
+Publicera ingenting.
+
+## Acceptanskriterium
+Engelskan är naturlig, korrekt och konsekvent.
+VizWays personlighet och tekniska trovärdighet är bevarade.
+Svenska versionen påverkas inte.
+

@@ -1,7 +1,23 @@
 // Samlar webbplatsens huvudlänkar för sidhuvud och sidfot.
-export const siteLinks = [
-   { href: '/', label: 'Start' },
-   { href: '/system/', label: 'System' },
-   { href: '/om/', label: 'Om VizWay' },
-   { href: '/kontakt/', label: 'Kontakt' },
+import { localizePath } from './i18n';
+import type { Locale, Ui } from './i18n';
+
+export const sitePaths = {
+   home: '/',
+   system: '/system/',
+   about: '/om/',
+   contact: '/kontakt/',
+} as const;
+
+const navigation = [
+   'home',
+   'system',
+   'about',
+   'contact',
 ] as const;
+
+
+// Hämtar länktexter och adresser i samma ordning i båda menyerna.
+export function getSiteLinks(locale: Locale, labels: Ui['navigation']) {
+   return navigation.map(key => ({ href: localizePath(locale, sitePaths[key]), label: labels[key], key }));
+}

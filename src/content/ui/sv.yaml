@@ -1,0 +1,26 @@
+language: Språk
+skip: Hoppa till innehållet
+mainNavigation: Huvudnavigation
+sitemap: Sidkarta
+homeLink: startsida
+darkTheme: Mörkt tema
+explore: Utforska!
+email: "E-post:"
+contactPending: Kontaktuppgifter kommer senare.
+systemKicker: VIZWAY / SYSTEM
+allSystems: Alla system
+readSystem: Läs om systemet
+projectSteps: Projektets delar
+example: Exempel
+navigation:
+   home: Start
+   system: System
+   about: Om VizWay
+   contact: Kontakt
+categories:
+   tillampningar: System och tillämpningar
+   teknik: Teknik och plattformar
+statuses:
+   fardig: Färdigt
+   utveckling: Under utveckling
+   ide: Framtida idé

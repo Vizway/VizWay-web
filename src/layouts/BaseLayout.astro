@@ -1,32 +1,44 @@
 ---
 // Tillhandahåller gemensam sidram, identitet, metadata och navigering.
 import { getEntry } from 'astro:content';
+import LanguageSwitcher from '../components/LanguageSwitcher.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
+import { getLanguageLinks, loadUi, localizePath } from '../lib/i18n';
+import type { Locale } from '../lib/i18n';
 import '../styles/global.css';
 
 interface Props {
    title: string;
    description: string;
+   locale: Locale;
    immersive?: boolean;
 }
 
-const { title, description, immersive = false } = Astro.props;
+const { title, description, locale, immersive = false } = Astro.props;
 const identity = await getEntry('site', 'identitet');
 if (!identity) {
    throw new Error('Webbplatsens identitet saknas i src/content/site/identitet.yaml.');
 }
 const { name } = identity.data;
 const documentTitle = title.includes(name) ? title : `${title} | ${name}`;
+const ui = await loadUi(locale);
+const contentId = locale === 'en' ? 'content' : 'innehall';
+const canonical = new URL(localizePath(locale, Astro.url.pathname), Astro.site);
+const alternates = getLanguageLinks(Astro.url.pathname);
 ---
 
 <!doctype html>
-<html lang="sv">
+<html lang={locale}>
    <head>
       <meta charset="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta name="description" content={description} />
       <title>{documentTitle}</title>
+      <link rel="canonical" href={canonical.href} />
+      {alternates.map(link => (
+         <link rel="alternate" hreflang={link.locale} href={new URL(link.href, Astro.site).href} />
+      ))}
       <script is:inline>
          // Återställ det sparade temat innan sidan ritas.
          try {
@@ -40,11 +52,23 @@ const documentTitle = title.includes(name) ? title : `${title} | ${name}`;
       </script>
    </head>
    <body>
-      <a href="#innehall" class="skip-link">Hoppa till innehållet</a>
-      {!immersive && <SiteHeader name={name} />}
-      <main id="innehall" tabindex={immersive ? -1 : undefined}>
+      <a href={`#${contentId}`} class="skip-link">{ui.skip}</a>
+      {immersive ? (
+         <div class="hero-language"><LanguageSwitcher {locale} /></div>
+      ) : <SiteHeader {name} {locale} />}
+      <main id={contentId} tabindex={immersive ? -1 : undefined}>
          <slot />
       </main>
-      {!immersive && <SiteFooter {name} />}
+      {!immersive && <SiteFooter {name} {locale} />}
    </body>
 </html>
+
+<style>
+   .hero-language {
+      position: absolute;
+      z-index: 1;
+      inset-block-start: clamp(0.7rem, 2vw, 1.4rem);
+      inset-inline-end: var(--gutter);
+      color-scheme: dark;
+   }
+</style>

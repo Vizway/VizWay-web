@@ -307,11 +307,6 @@ a:hover {
       grid-row: 2;
    }
 
-   .theme-toggle {
-      grid-column: 2;
-      grid-row: 1;
-   }
-
    .main-nav ul {
       column-gap: clamp(0.65rem, 3vw, 1.5rem);
    }

@@ -5,13 +5,15 @@ import HeroExplore from './HeroExplore.astro';
 import HeroLogo from './HeroLogo.astro';
 import HeroText from './HeroText.astro';
 import HeroTitle from './HeroTitle.astro';
+import type { Locale } from '../../lib/i18n';
 
 interface Props {
    title: string;
    accent: string;
+   locale: Locale;
 }
 
-const { title, accent } = Astro.props;
+const { title, accent, locale } = Astro.props;
 ---
 
 <section class="hero" aria-labelledby="start-heading">
@@ -20,7 +22,7 @@ const { title, accent } = Astro.props;
       <div class="logo"><HeroLogo /></div>
       <div class="title"><HeroTitle title={title} accent={accent} /></div>
       <div class="text"><HeroText><slot /></HeroText></div>
-      <div class="explore"><HeroExplore /></div>
+      <div class="explore"><HeroExplore {locale} /></div>
    </div>
 </section>
 
