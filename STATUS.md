@@ -1,4 +1,30 @@
-# Systemöversikt i VizWay Webb, 23 november 2026
+# Om VizWay, Kontakt och slutjustering, 23 november 2026
+
+Uppdrag 006 är genomfört och verifierat lokalt.
+
+## Levererat
+
+- `/om/` och `/kontakt/` använder de godkända texterna från `_doc/`. Kontakt visar `info@vizway.se` som enda offentlig e-postadress.
+- `BrandLogo.astro` är den gemensamma källan för SVG-ordmärket, stjärnan och sloganen. Startsidan använder logotypen i hero-delen. Undersidorna använder den som länk till startsidan i det befintliga sidhuvudet.
+- Varje systemkort är en enda länk. Hela kortet har samma klickyta. Kortets beskrivning, status och formgivning har bevarats.
+- Huvudnavigation, sidfot och adresser har bevarats. [README.md](README.md) beskriver hur logotypen och kontaktuppgifterna redigeras.
+
+## Verifiering
+
+- `npm run build` byggde de nio ordinarie sidorna. Samtliga sidor, länkar och länkade resurser kontrollerades när `dist/` serverades över HTTP.
+- Chrome verifierade ljust och mörkt tema vid 320, 390, 768 och 1 440 pixlars bredd. Kontrollerna omfattade en logotyp per sida, kortens klick- och tryckytor, tangentbordsfokus, navigation och e-postlänkens mål. Vid aktivering begärde Chrome `mailto:info@vizway.se`.
+- Startsidans skärmbilder var pixelidentiska före och efter ändringen vid alla fyra bredder. Bakgrundsbilden och typsnittsfilen var också identiska.
+- De fem projekten behöll sina statusar. Bygget innehåller varken exempelsystem, kontaktformulär eller webbplatskarta.
+
+## Kända begränsningar
+
+- E-postlänken använder besökarens e-postprogram. Den lokala verifieringen omfattade länkens aktivering och adress. Leverans via e-post är ännu inte verifierad.
+
+## Inför publicering
+
+- Gör den sista manuella granskningen av det statiska bygget, inklusive kontaktlänken i en webbläsare med ett konfigurerat e-postprogram. Publicering återstår.
+
+# Tidigare status för systemöversikten, 23 november 2026
 
 Uppdrag 005 är genomfört och verifierat lokalt.
 

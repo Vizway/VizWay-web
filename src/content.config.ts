@@ -13,6 +13,7 @@ const pages = defineCollection({
    loader: glob({ base: './src/content/pages', pattern: '*.md' }),
    schema: pageMetadata.extend({
       heroAccent: z.string().min(1).optional(),
+      signature: z.string().min(1).optional(),
    }),
 });
 

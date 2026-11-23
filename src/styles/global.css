@@ -118,19 +118,6 @@ a:hover {
    gap: 1rem clamp(1rem, 4vw, 3.5rem);
 }
 
-.brand {
-   display: inline-block;
-   width: fit-content;
-   transform: rotate(-5deg);
-   color: var(--ink);
-   font-size: 1.9rem;
-   font-style: italic;
-   font-weight: 820;
-   line-height: 1;
-   letter-spacing: -0.08em;
-   text-decoration: none;
-}
-
 .main-nav ul {
    display: flex;
    flex-wrap: wrap;

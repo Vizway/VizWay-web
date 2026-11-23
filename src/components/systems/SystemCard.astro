@@ -1,5 +1,5 @@
 ---
-// Visar en projektpost med status, kort beskrivning och länk.
+// Visar en projektpost där hela kortet är en länk till systemsidan.
 import type { CollectionEntry } from 'astro:content';
 import SystemStatus from './SystemStatus.astro';
 
@@ -12,22 +12,28 @@ const { title, description, status, category, flow, example } = data;
 ---
 
 <article class="project-card">
-   <div class="card-meta">
-      <span class:list={['project-mark', category]} aria-hidden="true"></span>
-      <SystemStatus status={status} example={example} />
-   </div>
-   <h3>{title}</h3>
-   <p>{description}</p>
-   {flow && (
-      <ol class="project-flow" aria-label="Projektets delar" role="list">
-         {flow.map((step) => <li>{step}</li>)}
-      </ol>
-   )}
-   <a href={`/system/${id}/`} aria-label={`Läs om systemet ${title}`}>Läs om systemet</a>
+   <a class="project-link" href={`/system/${id}/`} aria-labelledby={`project-action-${id} project-title-${id}`}>
+      <div class="card-meta">
+         <span class:list={['project-mark', category]} aria-hidden="true"></span>
+         <SystemStatus status={status} example={example} />
+      </div>
+      <h3 id={`project-title-${id}`}>{title}</h3>
+      <p>{description}</p>
+      {flow && (
+         <ol class="project-flow" aria-label="Projektets delar" role="list">
+            {flow.map((step) => <li>{step}</li>)}
+         </ol>
+      )}
+      <span class="project-action" id={`project-action-${id}`}>Läs om systemet</span>
+   </a>
 </article>
 
 <style>
    .project-card {
+      block-size: 100%;
+   }
+
+   .project-link {
       display: flex;
       block-size: 100%;
       flex-direction: column;
@@ -37,10 +43,16 @@ const { title, description, status, category, flow, example } = data;
       border: 1px solid var(--system-line);
       border-radius: 0.55rem;
       background: var(--system-panel);
+      color: var(--system-ink);
+      text-decoration: none;
    }
 
-   .project-card:is(:hover, :focus-within) {
+   .project-link:is(:hover, :focus-visible) {
       border-color: var(--system-accent);
+   }
+
+   .project-link:focus-visible {
+      outline-color: var(--system-accent);
    }
 
    .card-meta {
@@ -121,12 +133,17 @@ const { title, description, status, category, flow, example } = data;
       content: '';
    }
 
-   a {
+   .project-action {
       display: inline-flex;
       min-block-size: 2.75rem;
       align-items: center;
       margin-block: auto -0.3rem;
       color: var(--system-accent);
       font-weight: 680;
+      text-decoration: underline;
+   }
+
+   .project-link:hover .project-action {
+      text-decoration-thickness: 0.14em;
    }
 </style>

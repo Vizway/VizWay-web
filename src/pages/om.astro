@@ -6,6 +6,6 @@ import { loadPage } from '../lib/content';
 const { title, description, Content } = await loadPage('om');
 ---
 
-<PageLayout title={title} description={description}>
+<PageLayout {title} {description} warm>
    <Content />
 </PageLayout>
