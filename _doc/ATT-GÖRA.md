@@ -25,41 +25,43 @@ Status: `Öppen`, `Pågår`, `Klar`, `Parkerad`.
 
 ## P1 – Nästa utvecklingsomgång
 
+Punkterna 001–003 är verifierade i det lokala bygget för uppdrag 007.
+
 ### 001 – Logotyp och responsivitet
 
-**Status:** Öppen
+**Status:** Klar
 
-- [ ] Logotypens ordmärke och slogan ska skalas proportionellt som en sammanhängande enhet.
-- [ ] Förhindra att sloganen blir oproportionerligt stor i smalare fönster.
-- [ ] Behåll samma SVG-logotyp på samtliga sidor.
-- [ ] Anpassa logotypens bakgrund till headerns bakgrund i mörkt tema.
-- [ ] Behåll nuvarande ljusa utförande som utgångspunkt för ljust tema.
-- [ ] Undersök diskret stjärnhimmel bakom logotypen, utan synlig rektangulär avgränsning.
-- [ ] Verifiera på mobil, surfplatta och desktop.
+- [x] Logotypens ordmärke och slogan ska skalas proportionellt som en sammanhängande enhet.
+- [x] Förhindra att sloganen blir oproportionerligt stor i smalare fönster.
+- [x] Behåll samma SVG-logotyp på samtliga sidor.
+- [x] Anpassa logotypens bakgrund till headerns bakgrund i mörkt tema.
+- [x] Behåll nuvarande ljusa utförande som utgångspunkt för ljust tema.
+- [x] Undersök diskret stjärnhimmel bakom logotypen, utan synlig rektangulär avgränsning.
+- [x] Verifiera på mobil, surfplatta och desktop.
 
 **Mål:** Logotypen ska kännas naturligt integrerad i webbplatsen oavsett skärmstorlek.
 
 ### 002 – Header och footer
 
-**Status:** Öppen
+**Status:** Klar
 
-- [ ] Ge header och footer en sammanhängande grafisk identitet.
-- [ ] Använd samma grundläggande bakgrund och färgprinciper i båda banden.
-- [ ] Skapa elegantare övergångar mellan banden och sidinnehållet.
-- [ ] Undvik hårda, onödiga avgränsningslinjer.
-- [ ] Säkerställ att övergångarna fungerar i både ljust och mörkt tema.
+- [x] Ge header och footer en sammanhängande grafisk identitet.
+- [x] Använd samma grundläggande bakgrund och färgprinciper i båda banden.
+- [x] Skapa elegantare övergångar mellan banden och sidinnehållet.
+- [x] Undvik hårda, onödiga avgränsningslinjer.
+- [x] Säkerställ att övergångarna fungerar i både ljust och mörkt tema.
 
 **Mål:** Headern och footern ska rama in webbplatsen utan att kännas som separata block.
 
 ### 003 – Sitekarta i footer
 
-**Status:** Öppen
+**Status:** Klar
 
-- [ ] Lägg till länkar till Start, System, Om VizWay och Kontakt.
-- [ ] Lägg till `© VizWay`.
-- [ ] Gör texten `VizWay` i copyright-raden klickbar med länk till `/kontakt/`.
-- [ ] Anpassa länkarna för mobil och tangentbordsnavigering.
-- [ ] Samordna utseendet med headern.
+- [x] Lägg till länkar till Start, System, Om VizWay och Kontakt.
+- [x] Lägg till `© VizWay`.
+- [x] Gör texten `VizWay` i copyright-raden klickbar med länk till `/kontakt/`.
+- [x] Anpassa länkarna för mobil och tangentbordsnavigering.
+- [x] Samordna utseendet med headern.
 
 **Mål:** Besökaren ska enkelt hitta vidare oavsett vilken sida som visas.
 
@@ -69,6 +71,7 @@ Status: `Öppen`, `Pågår`, `Klar`, `Parkerad`.
 
 **Status:** Öppen
 
+- [ ] **Logotypens bakgrund:** Säkerställ att hela sloganen ryms inom logotypens bakgrund vid samtliga fönsterstorlekar. Kontrollera särskilt ljust tema. Behåll nuvarande proportioner och design.
 - [ ] Inför svenska och engelska som språkval.
 - [ ] Behåll svenska som standardspråk.
 - [ ] Skapa engelska versioner av Start, System, Om VizWay och Kontakt.

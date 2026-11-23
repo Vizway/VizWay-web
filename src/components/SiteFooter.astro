@@ -1,0 +1,60 @@
+---
+// Visar webbplatsens sidkarta och copyrightlänk till Kontakt.
+import { siteLinks } from '../lib/site-navigation';
+
+interface Props {
+   name: string;
+}
+
+const { name } = Astro.props;
+---
+
+<footer class="site-footer">
+   <div class="container footer-inner">
+      <nav aria-label="Sidkarta">
+         <ul>
+            {siteLinks.map(({ href, label }) => <li><a {href}>{label}</a></li>)}
+         </ul>
+      </nav>
+      <p class="copyright">© <a href="/kontakt/">{name}</a></p>
+   </div>
+</footer>
+
+<style>
+   .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0 2rem;
+      padding-block: 0.7rem;
+   }
+
+   ul {
+      display: flex;
+      flex-wrap: wrap;
+      column-gap: clamp(0.6rem, 2.2vw, 1.65rem);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+   }
+
+   a {
+      display: inline-flex;
+      min-block-size: 2.75rem;
+      align-items: center;
+      color: var(--muted);
+      font-size: 0.9375rem;
+      font-weight: 610;
+      text-decoration: none;
+   }
+
+   a:is(:hover, :focus-visible) {
+      color: var(--accent);
+      text-decoration: underline;
+   }
+
+   .copyright a {
+      text-decoration: underline;
+   }
+</style>

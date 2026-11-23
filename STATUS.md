@@ -1,4 +1,29 @@
-# Om VizWay, Kontakt och slutjustering, 23 november 2026
+# Gemensam identitet och sidfot, 23 november 2026
+
+Uppdrag 007 är genomfört och verifierat i det lokala bygget.
+
+## Jämförelse med publicerad version
+
+- Före ändringen matchade den publicerade startsidan och systemöversikten det lokala utgångsläget pixel för pixel i Chrome vid 320, 390, 768 och 1 440 pixlar i båda temana. Huvudnavigationens hovring matchade också. [VizWay](https://vizway.se/)
+- Den publicerade logotypens slogan ändrade storlek i annan takt än ordmärket. I mörkt tema syntes en separat marinblå logotypplatta. Sidfoten visade endast företagsnamnet. [Systemöversikten](https://vizway.se/system/)
+
+## Levererat
+
+- Ordmärket, bågen, stjärnan och den kursiva sloganen skalar nu proportionellt med ett gemensamt storleksmått. Ljust tema behåller den marinblå plattan. I mörkt tema ligger logotypen direkt mot sidhuvudets diskreta stjärnpunkter.
+- Sidhuvud och sidfot använder samma grundfärger, toningar och tunna linjer. Den gemensamma sidfoten visar en HTML-sidkarta med Start, System, Om VizWay och Kontakt. Länken **VizWay** i **© VizWay** leder till Kontakt.
+
+## Verifiering
+
+- `npm run build` byggde nio sidor. Testade samtliga i Chrome vid 320, 390, 768 och 1 440 pixlar i båda temana utan horisontell rullning.
+- Verifierade logotypens proportioner, temaväxling, tangentbordsfokus och varje sidfotslänk. Provade samtliga systemkort via kanten av kortet och med tangentbord.
+- Startsidans bakgrundsfil och beskärning var identiska. Rubriken, versen och knappen hade samma horisontella placering och flyttades mindre än en pixel vertikalt när logotypen skalades.
+
+## Visuella skillnader och kvarstående arbete
+
+- Den proportionella skalningen ger sloganen något mindre typgrad vid smala fönster. Sidfoten visas på två rader vid 320 pixlar.
+- Ändringarna finns lokalt. Övriga förbättringar ligger kvar i [ATT-GÖRA.md](_doc/ATT-GÖRA.md).
+
+# Tidigare status för Om VizWay, Kontakt och slutjustering, 23 november 2026
 
 Uppdrag 006 är genomfört och verifierat lokalt.
 

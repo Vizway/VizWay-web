@@ -1,6 +1,7 @@
 ---
 // Tillhandahåller gemensam sidram, identitet, metadata och navigering.
 import { getEntry } from 'astro:content';
+import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import '../styles/global.css';
 
@@ -44,8 +45,6 @@ const documentTitle = title.includes(name) ? title : `${title} | ${name}`;
       <main id="innehall" tabindex={immersive ? -1 : undefined}>
          <slot />
       </main>
-      {!immersive && <footer class="site-footer">
-         <div class="container footer-inner">{name}</div>
-      </footer>}
+      {!immersive && <SiteFooter {name} />}
    </body>
 </html>

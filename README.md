@@ -43,14 +43,18 @@ Redigera rubriken i YAML-fältet `title` och sidans beskrivning i `description`.
 
 ## Redigera logotypen
 
-Ändra SVG-geometrin och logotypens gemensamma färger i `src/components/BrandLogo.astro`. Sloganen hämtas från `src/content/site/identitet.yaml`. `HeroLogo.astro` och `SiteHeader.astro` anger logotypens storlek och placering för respektive yta.
+Ändra SVG-geometrin och logotypens gemensamma färger i `src/components/BrandLogo.astro`. Sloganen hämtas från `src/content/site/identitet.yaml`. Ändra `--brand-size` i `HeroLogo.astro` eller `SiteHeader.astro` för att skala ordmärke, båge, stjärna och slogan tillsammans.
+
+## Redigera sidhuvud och sidfot
+
+Huvudnavigationen och sidfotens sidkarta hämtar sina länkar från `src/lib/site-navigation.ts`. `SiteHeader.astro` visar logotypen och temaväxlingen. `SiteFooter.astro` visar sidkartan och länken från **© VizWay** till Kontakt. De gemensamma bandfärgerna finns i `src/styles/global.css`. Startsidan visar logotypen i hero-delen och har egen navigation via **Utforska!**.
 
 ## Redigera startsidans hero
 
 | Ändring | Redigera |
 | --- | --- |
 | Bakgrund | Lägg bildfilen i `public/images/hero/`. Ange sökväg, bildmått och vid behov beskärning i `src/components/hero/HeroBackground.astro`. |
-| Logotypens storlek | Ändra storleksvariablerna i `src/components/hero/HeroLogo.astro`. |
+| Logotypens storlek | Ändra `--brand-size` i `src/components/hero/HeroLogo.astro`. |
 | Rubrik och vers | Ändra den vita delen i `title` och den turkosa delen i `heroAccent` i `src/content/pages/start.md`. Skriv varje versrad som ett eget stycke med en tom rad mellan styckena. |
 | Placering och avstånd | Ändra ordningen, rutnätet och avstånden i `src/components/hero/Hero.astro`. Låt HTML-ordningen följa läsordningen. |
 | Färger, typsnitt och textstorlek | Ändra gemensamma färger och det lokala typsnittet i `Hero.astro`. Ändra textstorlek i `HeroTitle.astro`, `HeroText.astro` och `HeroExplore.astro`. |
@@ -95,8 +99,8 @@ Om `category` eller `order` saknas används `tillampningar` respektive `100`. De
 | `src/content.config.ts` | Läser in och validerar innehåll och metadata |
 | `src/pages/` | Webbplatsens adresser och sidornas sammansättning |
 | `src/layouts/` | Gemensam sidram samt mallar för informationssidor och systemsidor |
-| `src/components/` | Gemensam logotyp, startsidans hero, systemkort, huvudnavigation och temaväxling |
-| `src/lib/` | Innehållshämtning och systemstatus |
+| `src/components/` | Gemensam logotyp, sidhuvud, sidfot, temaväxling, startsidans hero och systemkort |
+| `src/lib/` | Innehållshämtning, systemstatus och gemensamma navigationslänkar |
 | `src/styles/global.css` | Färger, typografi, ljust och mörkt tema samt responsiv layout |
 | `_doc/img/` | Designreferenser för lokal dokumentation |
 

@@ -2,6 +2,7 @@
 // Visar VizWays logotyp, huvudnavigation och temaväxling.
 import BrandLogo from './BrandLogo.astro';
 import ThemeToggle from './ThemeToggle.astro';
+import { siteLinks } from '../lib/site-navigation';
 
 interface Props {
    name: string;
@@ -9,12 +10,6 @@ interface Props {
 
 const { name } = Astro.props;
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
-const links = [
-   { href: '/', label: 'Start' },
-   { href: '/system/', label: 'System' },
-   { href: '/om/', label: 'Om VizWay' },
-   { href: '/kontakt/', label: 'Kontakt' },
-];
 ---
 
 <header class="site-header">
@@ -22,7 +17,7 @@ const links = [
       <a class="brand" href="/" aria-label={`${name}, startsida`}><BrandLogo /></a>
       <nav class="main-nav" aria-label="Huvudnavigation">
          <ul>
-            {links.map(({ href, label }) => {
+            {siteLinks.map(({ href, label }) => {
                const target = href.replace(/\/$/, '') || '/';
                const current = path === target ? 'page' : undefined;
                return (
@@ -45,17 +40,16 @@ const links = [
    }
 
    .brand {
-      --brand-name-size: clamp(3.1rem, 4vw, 3.6rem);
-      --brand-slogan-size: clamp(0.6875rem, 0.86vw, 0.8rem);
+      --brand-size: clamp(3.5rem, 4.15vw, 4rem);
       display: block;
       inline-size: fit-content;
       padding: 0.3rem 0.65rem 0.4rem;
       border-radius: 0.4rem;
-      background: #0b1c30;
+      background: light-dark(#0b1c30, transparent);
       text-decoration: none;
    }
 
-   @media (max-width: 27rem) {
+   @media (max-width: 28rem) {
       .brand {
          grid-column: 1 / -1;
       }

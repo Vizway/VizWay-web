@@ -104,10 +104,33 @@ a:hover {
 
 
 
-/* Gemensamt sidhuvud och navigation. */
+/* Gemensamma färger för sidhuvud och sidfot. */
+.site-header, .site-footer {
+   --band-tone: var(--surface);
+   --band-edge: light-dark(#f6fafc, #102035);
+   --band-line: light-dark(#d7e5ec, #78adc948);
+   border-image: linear-gradient(90deg, transparent, var(--band-line) 16% 84%, transparent) 1;
+}
+
 .site-header {
-   border-bottom: 1px solid var(--line);
-   background: var(--surface);
+   --band-star: light-dark(transparent, #a5dcea50);
+   border-block-end: 1px solid var(--band-line);
+   background:
+      radial-gradient(circle at 5% 22%, var(--band-star) 0.45px, transparent 1.25px),
+      radial-gradient(circle at 12% 73%, var(--band-star) 0.5px, transparent 1.35px),
+      radial-gradient(circle at 18% 30%, var(--band-star) 0.4px, transparent 1.15px),
+      radial-gradient(circle at 29% 13%, var(--band-star) 0.55px, transparent 1.3px),
+      radial-gradient(circle at 38% 76%, var(--band-star) 0.45px, transparent 1.15px),
+      radial-gradient(circle at 57% 21%, var(--band-star) 0.4px, transparent 1.25px),
+      radial-gradient(circle at 69% 59%, var(--band-star) 0.5px, transparent 1.35px),
+      radial-gradient(circle at 89% 18%, var(--band-star) 0.45px, transparent 1.2px),
+      linear-gradient(var(--band-tone), var(--band-edge));
+}
+
+.site-footer {
+   border-block-start: 1px solid var(--band-line);
+   background: linear-gradient(var(--band-edge), var(--band-tone));
+   color: var(--muted);
 }
 
 .header-inner {
@@ -176,7 +199,7 @@ a:hover {
 
 
 
-/* Informationssidor, systemöversikt och sidfot. */
+/* Informationssidor och systemöversikt. */
 .page-content {
    padding-block: clamp(2.5rem, 7vw, 6rem);
 }
@@ -259,15 +282,6 @@ a:hover {
 
 .system-card .section-label {
    color: var(--accent);
-}
-
-.site-footer {
-   border-top: 1px solid var(--line);
-   color: var(--muted);
-}
-
-.footer-inner {
-   padding-block: 1.2rem;
 }
 
 @media (max-width: 48rem) {
