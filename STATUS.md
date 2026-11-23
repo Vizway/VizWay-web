@@ -1,4 +1,26 @@
-# Status för VizWay Webb v0.2
+# Systemöversikt i VizWay Webb, 23 november 2026
+
+Uppdrag 005 är genomfört och verifierat lokalt.
+
+## Levererat
+
+- `/system/` visar två projektgrupper. **System och tillämpningar** innehåller BOS, Bygga Välstånd och KvittoApp. **Teknik och plattformar** innehåller VizOS och Viz AI Core.
+- Projektkorten visar syfte, utvecklingsstatus och länk till respektive systemsida. Systemsidorna använder en gemensam mall med separata avsnitt för nuvarande utveckling och framtida möjligheter.
+- Mörk marinblå introduktion, teknisk geometri i CSS och turkosa detaljer ger systemöversikten en egen form. Katalog och projektsidor följer den befintliga temaväxlingen.
+- Projektens Markdown-filer ersätter den tidigare exempelposten. [README.md](README.md) beskriver hur en post läggs till, ändras, kategoriseras och sorteras.
+
+## Verifiering
+
+- `npm run build` byggde nio statiska sidor. Alla nio svarade med HTTP 200 och den tidigare exempeladressen svarade med HTTP 404.
+- Testade systemöversikten och alla fem projektsidor i Chrome vid 320, 390, 768 och 1 440 pixlars bredd i båda temana. Kontrollerade länkar, synligt tangentbordsfokus, temaväxling och att sidorna rymdes utan horisontell rullning.
+- Jämförde startsidans byggda HTML, CSS, typsnitt och bakgrund före och efter ändringen. Filerna var identiska. Skärmbilderna var pixelidentiska i alla fyra storlekar. Bakgrunden överensstämde också med originalet i `_doc/img/`.
+
+## Kvarvarande begränsningar
+
+- Fyra projekt visas som **Under utveckling** och Viz AI Core visas som **Framtida idé**. Underlaget styrker ingen färdig produkt.
+- OCR → SIE är ett påbörjat utvecklingsarbete. Tolkning, förslag till bokföringsunderlag och SIE-export beskrivs som mål. Bokföringsuppgifterna ska gå att kontrollera före export.
+
+# Tidigare status för VizWay Webb v0.2
 
 Startsidans hero är monterad och verifierad lokalt. Den andra visuella finjusteringen slutfördes den 22 november 2026.
 
@@ -14,7 +36,7 @@ Startsidans hero är monterad och verifierad lokalt. Den andra visuella finjuste
 
 ## Verifiering
 
-- Jämförde logotypen med `_doc/logga.png`. Kontrollerade att bakgrundsbilden och de fyra övriga sidornas byggda HTML var identiska före och efter ändringen.
+- Jämförde logotypen med `_doc/img/logga.png`. Kontrollerade att bakgrundsbilden och de fyra övriga sidornas byggda HTML var identiska före och efter ändringen.
 - `npm run build` genererade fem statiska sidor i `dist/`.
 - Granskade det statiska bygget i Chrome vid 320 × 568, 390 × 844, 768 × 1 024 och 1 440 × 900 pixlar. Sloganen visades i kursiv på en rad. Rubriken hade rätt skiftläge, versen låg på fyra rader och sidan rymdes utan horisontell rullning.
 - Vid 1 440 × 900 pixlar låg knappen 15 pixlar åt höger och 16 pixlar längre ned jämfört med föregående version. Granskade även knappens placering mot ljusspåret vid andra desktopformat.
@@ -77,4 +99,4 @@ Instruktioner för installation, utveckling och systeminnehåll finns i [README.
 ## Innehåll som kan kompletteras
 
 - Underlaget innehöll ingen bekräftad kontaktadress. Kontaktsidan visar en statusrad tills adressen har lagts till.
-- Underlaget namngav inga färdiga system eller pågående utvecklingsprojekt. Systemöversikten visar därför ett tydligt märkt exempel under framtida idéer.
+- Underlaget namngav inga färdiga system eller pågående utvecklingsprojekt. Systemöversikten visade därför ett märkt exempel under framtida idéer.

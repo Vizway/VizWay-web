@@ -1,0 +1,46 @@
+---
+// Visar systemets utvecklingsstatus med text och färg.
+import type { CollectionEntry } from 'astro:content';
+import { systemStatuses } from '../../lib/system-status';
+
+type Props = Pick<CollectionEntry<'systems'>['data'], 'status' | 'example'>;
+
+const { status, example } = Astro.props;
+---
+
+<span class:list={['status', status]}>{systemStatuses[status]}{example && ' · Exempel'}</span>
+
+<style>
+   .status {
+      --status-ink: light-dark(#005852, #a0eee6);
+      --status-fill: light-dark(#e3f3f0, #173934);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.24rem 0.65rem;
+      border-radius: 0.3rem;
+      background: var(--status-fill);
+      color: var(--status-ink);
+      font-size: 0.875rem;
+      font-weight: 650;
+      line-height: 1.35;
+   }
+
+   .status::before {
+      flex: 0 0 0.38rem;
+      block-size: 0.38rem;
+      border-radius: 50%;
+      background: currentColor;
+      content: '';
+   }
+
+   .status.ide {
+      --status-ink: light-dark(#294e74, #b6d8f7);
+      --status-fill: light-dark(#e8f1fb, #21364d);
+   }
+
+   .status.fardig {
+      --status-ink: light-dark(#305d3e, #b0e6b5);
+      --status-fill: light-dark(#e5f2e8, #233c2e);
+   }
+</style>

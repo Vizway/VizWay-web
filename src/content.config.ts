@@ -20,6 +20,9 @@ const systems = defineCollection({
    loader: glob({ base: './src/content/systems', pattern: '*.md' }),
    schema: pageMetadata.pick({ title: true, description: true }).extend({
       status: z.enum(['fardig', 'utveckling', 'ide']),
+      category: z.enum(['tillampningar', 'teknik']).default('tillampningar'),
+      order: z.number().int().nonnegative().default(100),
+      flow: z.array(z.string().min(1)).min(2).optional(),
       example: z.boolean().default(false),
    }),
 });

@@ -1,0 +1,143 @@
+---
+// Visar systemvärldens rubrik, ingress och valfria tekniska geometri.
+interface Props {
+   title: string;
+   diagram?: boolean;
+}
+
+const { title, diagram = false } = Astro.props;
+---
+
+<header class="system-banner">
+   <div class:list={['container', 'banner-inner', { 'with-diagram': diagram }]}>
+      <div class="summary">
+         <slot name="eyebrow" />
+         <h1>{title}</h1>
+         <div class="intro"><slot /></div>
+      </div>
+      {diagram && (
+         <div class="diagram" aria-hidden="true">
+            <span class="diagram-ring"></span>
+            <span class="diagram-core"></span>
+            <span class="diagram-node start"></span>
+            <span class="diagram-node end"></span>
+         </div>
+      )}
+   </div>
+</header>
+
+<style>
+   .system-banner {
+      color-scheme: dark;
+      border-block-end: 1px solid #31546c;
+      background:
+         radial-gradient(ellipse at 78% 12%, #15354b, transparent 64%),
+         linear-gradient(120deg, #081423, #0e2235);
+      color: #f2f8ff;
+   }
+
+   .banner-inner {
+      display: grid;
+      align-items: center;
+      gap: clamp(2rem, 4vw, 4rem);
+      padding-block: clamp(1.9rem, 4.3vw, 3.9rem);
+   }
+
+   .summary {
+      display: grid;
+      min-inline-size: 0;
+      justify-items: start;
+      gap: clamp(0.9rem, 1.6vw, 1.4rem);
+   }
+
+   h1 {
+      max-inline-size: 24ch;
+      font-size: clamp(1.95rem, 4.25vw, 4.2rem);
+      font-weight: 680;
+      line-height: 1.05;
+      letter-spacing: -0.055em;
+   }
+
+   .with-diagram h1 {
+      font-size: clamp(2.5rem, 5.2vw, 4.8rem);
+   }
+
+   .intro {
+      max-inline-size: 61ch;
+      color: #bfd2e3;
+      font-size: clamp(1rem, 1.4vw, 1.175rem);
+   }
+
+   .diagram {
+      display: none;
+   }
+
+   @media (min-width: 56rem) {
+      .with-diagram {
+         grid-template-columns: minmax(0, 1fr) minmax(13rem, 33%);
+      }
+
+      .diagram {
+         position: relative;
+         display: grid;
+         min-block-size: 12rem;
+         place-items: center;
+         border: 1px solid #6cb3c837;
+         border-radius: 0.4rem;
+         background:
+            linear-gradient(0deg, transparent calc(50% - 0.5px), #77f1ef58 50%, transparent calc(50% + 0.5px)),
+            linear-gradient(90deg, transparent calc(50% - 0.5px), #77f1ef40 50%, transparent calc(50% + 0.5px)),
+            repeating-linear-gradient(0deg, transparent 0 1.45rem, #73bad018 1.45rem 1.5rem),
+            repeating-linear-gradient(90deg, transparent 0 1.45rem, #73bad018 1.45rem 1.5rem),
+            radial-gradient(ellipse at center, #33718a58, transparent 72%);
+         background-position: center;
+      }
+
+      .diagram-ring, .diagram-core {
+         grid-area: 1 / 1;
+         aspect-ratio: 1;
+      }
+
+      .diagram-ring {
+         inline-size: 8.8rem;
+         border: 1px dashed #7ac2d14f;
+         border-radius: 50%;
+         outline: 1px solid #7ac2d135;
+         outline-offset: 0.55rem;
+      }
+
+      .diagram-core {
+         display: grid;
+         inline-size: 4.3rem;
+         place-items: center;
+         transform: rotate(45deg);
+         border: 1px solid #81f8ef8c;
+         border-radius: 0.25rem;
+         background: #183c52;
+         box-shadow: 0 0 2rem #58cdd02e;
+      }
+
+      .diagram-core::after {
+         inline-size: 49%;
+         aspect-ratio: 1;
+         border: 1px solid #a3fff7;
+         border-radius: 0.15rem;
+         background: #367483;
+         content: '';
+      }
+
+      .diagram-node {
+         position: absolute;
+         inset-block-start: 50%;
+         inline-size: 0.55rem;
+         aspect-ratio: 1;
+         transform: translateY(-50%);
+         border: 1px solid #72dfe5;
+         border-radius: 0.1rem;
+         background: #193d50;
+      }
+
+      .diagram-node.start { inset-inline-start: 14%; }
+      .diagram-node.end { inset-inline-end: 14%; }
+   }
+</style>

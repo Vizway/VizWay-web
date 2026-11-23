@@ -1,38 +1,38 @@
 ---
-// Grupperar och sorterar systemsidor efter status och svensk titel.
+// Grupperar system efter kategori och sorterar dem enligt innehållets metadata.
 import { getCollection } from 'astro:content';
-import PageLayout from '../../layouts/PageLayout.astro';
+import SystemBanner from '../../components/systems/SystemBanner.astro';
+import SystemSection from '../../components/systems/SystemSection.astro';
+import SystemFrame from '../../layouts/SystemFrame.astro';
 import { loadPage } from '../../lib/content';
-import { systemStatuses } from '../../lib/system-status';
 
 const { title, description, Content } = await loadPage('system');
-const entries = await getCollection('systems');
-const sections = Object.entries(systemStatuses).map(([status, labels]) => ({
-   status,
-   ...labels,
-   entries: entries.filter(({ data }) => data.status === status)
-      .sort((first, second) => first.data.title.localeCompare(second.data.title, 'sv')),
-}));
+const projects = (await getCollection('systems')).sort(({ data: first }, { data: second }) =>
+   first.order - second.order || first.title.localeCompare(second.title, 'sv'),
+);
+const categories = [
+   { id: 'tillampningar', title: 'System och tillämpningar' },
+   { id: 'teknik', title: 'Teknik och plattformar' },
+] as const;
 ---
 
-<PageLayout title={title} description={description}>
-   <Content />
-   <div class="system-sections" slot="details">
-      {sections.map((section) => (
-         <section class="system-section" aria-labelledby={`status-${section.status}`}>
-            <h2 id={`status-${section.status}`}>{section.label}</h2>
-            {section.entries.length ? (
-               <ul class="system-list">
-                  {section.entries.map(({ id, data }) => (
-                     <li class="system-card">
-                        {data.example && <p class="section-label">Exempel</p>}
-                        <h3><a href={`/system/${id}/`}>{data.title}</a></h3>
-                        <p>{data.description}</p>
-                     </li>
-                  ))}
-               </ul>
-            ) : <p>{section.empty}</p>}
-         </section>
-      ))}
+<SystemFrame title={title} description={description}>
+   <SystemBanner {title} diagram>
+      <p class="section-label" slot="eyebrow">VIZWAY / SYSTEM</p>
+      <Content />
+   </SystemBanner>
+   <div class="container system-catalog">
+      {categories.map(({ id, title }) => {
+         const matches = projects.filter(({ data }) => data.category === id);
+         return matches.length > 0 && <SystemSection {id} {title} projects={matches} />;
+      })}
    </div>
-</PageLayout>
+</SystemFrame>
+
+<style>
+   .system-catalog {
+      display: grid;
+      gap: clamp(2.15rem, 4.2vw, 3.65rem);
+      padding-block: clamp(1.8rem, 3.8vw, 3.4rem) clamp(2.75rem, 6vw, 5.5rem);
+   }
+</style>

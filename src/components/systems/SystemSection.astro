@@ -1,0 +1,57 @@
+---
+// Samlar en projektkategori under en rubrik i ett responsivt rutnät.
+import type { CollectionEntry } from 'astro:content';
+import SystemCard from './SystemCard.astro';
+
+interface Props {
+   id: CollectionEntry<'systems'>['data']['category'];
+   title: string;
+   projects: CollectionEntry<'systems'>[];
+}
+
+const { id, title, projects } = Astro.props;
+---
+
+<section aria-labelledby={id}>
+   <h2 id={id}>{title}</h2>
+   <ul class="project-grid" role="list">
+      {projects.map((system) => <li><SystemCard system={system} /></li>)}
+   </ul>
+</section>
+
+<style>
+   section {
+      display: grid;
+      gap: clamp(0.9rem, 2vw, 1.4rem);
+   }
+
+   h2 {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      font-size: clamp(1.4rem, 2.6vw, 2.05rem);
+      font-weight: 680;
+   }
+
+   h2::after {
+      flex: 1 0 1rem;
+      block-size: 1px;
+      background: var(--system-line);
+      content: '';
+   }
+
+   .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+      gap: clamp(0.85rem, 2vw, 1.25rem);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+   }
+
+   @media (min-width: 44rem) and (max-width: 64rem) {
+      .project-grid > :last-child:nth-child(odd) {
+         grid-column: 1 / -1;
+      }
+   }
+</style>

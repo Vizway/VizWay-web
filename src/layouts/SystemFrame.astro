@@ -1,0 +1,31 @@
+---
+// Ger systemöversikten och projektsidorna gemensamma färgytor.
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+   title: string;
+   description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+   <div class="system-frame">
+      <slot />
+   </div>
+</BaseLayout>
+
+<style>
+   .system-frame {
+      --system-base: light-dark(#eef4f8, #091423);
+      --system-panel: light-dark(#ffffff, #101e30);
+      --system-ink: light-dark(#112539, #edf6ff);
+      --system-muted: light-dark(#425a70, #b3c6d8);
+      --system-line: light-dark(#cddbe6, #2d455c);
+      --system-accent: light-dark(#006662, #7ae6dd);
+      --system-mark: light-dark(#e3f3f5, #132c40);
+      background: var(--system-base);
+      color: var(--system-ink);
+   }
+</style>

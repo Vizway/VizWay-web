@@ -1,22 +1,68 @@
 ---
 // Visar ett systems status, sammanfattning och innehåll med en gemensam mall.
 import type { CollectionEntry } from 'astro:content';
-import { systemStatuses } from '../lib/system-status';
-import BaseLayout from './BaseLayout.astro';
+import SystemBanner from '../components/systems/SystemBanner.astro';
+import SystemStatus from '../components/systems/SystemStatus.astro';
+import SystemFrame from './SystemFrame.astro';
 
-type Props = CollectionEntry<'systems'>['data'];
+type Props = Pick<CollectionEntry<'systems'>['data'], 'title' | 'description' | 'status' | 'example'>;
 
 const { title, description, status, example } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description}>
-   <article class="container page-content">
-      <a class="back-link" href="/system/">Alla system</a>
-      <header class="page-heading">
-         <p class="section-label">{systemStatuses[status].label}{example && ' · Exempel'}</p>
-         <h1>{title}</h1>
-         <p class="lead">{description}</p>
-      </header>
-      <div class="prose"><slot /></div>
+<SystemFrame {title} {description}>
+   <article>
+      <SystemBanner {title}>
+         <div class="project-navigation" slot="eyebrow">
+            <a href="/system/">Alla system</a>
+            <SystemStatus {status} {example} />
+         </div>
+         <p>{description}</p>
+      </SystemBanner>
+      <div class="container">
+         <div class="project-content prose"><slot /></div>
+      </div>
    </article>
-</BaseLayout>
+</SystemFrame>
+
+<style>
+   .project-navigation {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem 1rem;
+   }
+
+   .project-navigation a {
+      display: inline-flex;
+      min-block-size: 2.75rem;
+      align-items: center;
+      color: #8ce9e3;
+      font-weight: 650;
+   }
+
+   .project-content {
+      max-inline-size: 72ch;
+      padding-block: clamp(1.65rem, 3vw, 3rem) clamp(3rem, 6vw, 5rem);
+      color: var(--system-muted);
+   }
+
+   .project-content :global(h2) {
+      margin-block-start: 2.15rem;
+      padding-block-start: 1.15rem;
+      border-block-start: 1px solid var(--system-line);
+      color: var(--system-ink);
+      font-size: clamp(1.45rem, 2.7vw, 2rem);
+   }
+
+   .project-content :global(h2:first-child) {
+      margin-block-start: 0;
+      padding-block-start: 0;
+      border-block-start: 0;
+   }
+
+   .project-content :global(h3) {
+      color: var(--system-ink);
+      font-size: 1.125rem;
+   }
+</style>

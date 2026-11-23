@@ -52,15 +52,36 @@ Lägg till fältet `email` i YAML-blocket i `kontakt.md` när VizWay har fastst�
 | Färger, typsnitt och textstorlek | Ändra gemensamma färger och det lokala typsnittet i `Hero.astro`. Ändra textstorlek i `HeroLogo.astro`, `HeroTitle.astro`, `HeroText.astro` och `HeroExplore.astro`. |
 | Utforska-länken | Ändra länktext, mål och utseende i `src/components/hero/HeroExplore.astro`. |
 
-## Lägg till ett system
+## Lägg till, ändra eller kategorisera ett system
 
 1. Skapa en Markdown-fil i `src/content/systems/`. Använd gemener, siffror och bindestreck i filnamnet. `mitt-system.md` ger adressen `/system/mitt-system/`.
-2. Lägg till YAML-fälten `title`, `description` och `status` mellan två rader med `---`.
-3. Använd `fardig` för ett färdigt system, `utveckling` för pågående utveckling eller `ide` för en framtida idé. Sätt vid behov `example: true` för att märka innehållet som ett exempel.
-4. Beskriv systemets funktion och praktiska användning under YAML-blocket.
-5. Kör `npm run build` och kontrollera länken under rätt status på `/system/`.
+2. Lägg till YAML-blocket nedan. `title` och `description` visas både på kortet och på systemsidan.
+3. Välj kategori och status i tabellerna nedan. Ange ett lägre `order` för att visa systemet tidigare i sin kategori. Vid samma värde sorteras projekten efter svensk titel.
+4. Använd rubrikerna `## Syfte och tänkt användning`, `## Nuvarande utveckling` och `## Framtida möjligheter` i brödtexten. Beskriv verifierade funktioner och pågående arbete under nuvarande utveckling. Beskriv planerade funktioner under framtida möjligheter.
+5. Ändra en befintlig post i samma fil för att behålla dess adress. Kör `npm run build` och kontrollera kortets kategori, status och länk på `/system/`.
 
-Utgå från `src/content/systems/systemoversikt.md` om du behöver ett exempel på formatet.
+```yaml
+---
+title: Mitt system
+description: En kort beskrivning av systemets tänkta nytta.
+status: ide
+category: tillampningar
+order: 40
+---
+```
+
+| `category` | Grupp på systemöversikten |
+| --- | --- |
+| `tillampningar` | System och tillämpningar |
+| `teknik` | Teknik och plattformar |
+
+| `status` | Visas som |
+| --- | --- |
+| `fardig` | Färdigt |
+| `utveckling` | Under utveckling |
+| `ide` | Framtida idé |
+
+Om `category` eller `order` saknas används `tillampningar` respektive `100`. Den valfria listan `flow` visar projektets delar på kortet. Se formatet i [kvittoapp.md](src/content/systems/kvittoapp.md). Fältet `example: true` lägger till märkningen **Exempel**.
 
 ## Projektstruktur
 
@@ -70,9 +91,10 @@ Utgå från `src/content/systems/systemoversikt.md` om du behöver ett exempel p
 | `src/content.config.ts` | Läser in och validerar innehåll och metadata |
 | `src/pages/` | Webbplatsens adresser och sidornas sammansättning |
 | `src/layouts/` | Gemensam sidram samt mallar för informationssidor och systemsidor |
-| `src/components/` | Startsidans hero, huvudnavigation och temaväxling |
+| `src/components/` | Startsidans hero, systemkort, huvudnavigation och temaväxling |
 | `src/lib/` | Innehållshämtning och systemstatus |
 | `src/styles/global.css` | Färger, typografi, ljust och mörkt tema samt responsiv layout |
+| `_doc/img/` | Designreferenser för lokal dokumentation |
 
 ```mermaid
 flowchart LR

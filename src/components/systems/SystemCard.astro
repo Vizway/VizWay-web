@@ -1,0 +1,132 @@
+---
+// Visar en projektpost med status, kort beskrivning och länk.
+import type { CollectionEntry } from 'astro:content';
+import SystemStatus from './SystemStatus.astro';
+
+interface Props {
+   system: CollectionEntry<'systems'>;
+}
+
+const { system: { id, data } } = Astro.props;
+const { title, description, status, category, flow, example } = data;
+---
+
+<article class="project-card">
+   <div class="card-meta">
+      <span class:list={['project-mark', category]} aria-hidden="true"></span>
+      <SystemStatus status={status} example={example} />
+   </div>
+   <h3>{title}</h3>
+   <p>{description}</p>
+   {flow && (
+      <ol class="project-flow" aria-label="Projektets delar" role="list">
+         {flow.map((step) => <li>{step}</li>)}
+      </ol>
+   )}
+   <a href={`/system/${id}/`} aria-label={`Läs om systemet ${title}`}>Läs om systemet</a>
+</article>
+
+<style>
+   .project-card {
+      display: flex;
+      block-size: 100%;
+      flex-direction: column;
+      align-items: start;
+      gap: 0.8rem;
+      padding: clamp(1rem, 2.1vw, 1.6rem);
+      border: 1px solid var(--system-line);
+      border-radius: 0.55rem;
+      background: var(--system-panel);
+   }
+
+   .project-card:is(:hover, :focus-within) {
+      border-color: var(--system-accent);
+   }
+
+   .card-meta {
+      display: flex;
+      inline-size: 100%;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.65rem;
+      margin-block-end: 0.3rem;
+   }
+
+   .project-mark {
+      display: grid;
+      flex: 0 0 2.5rem;
+      block-size: 2.5rem;
+      place-items: center;
+      border-radius: 0.3rem;
+      background: var(--system-mark);
+      color: var(--system-accent);
+   }
+
+   .project-mark::after {
+      inline-size: 0.95rem;
+      aspect-ratio: 1;
+      border: 1px solid currentColor;
+      border-radius: 0.08rem;
+      background:
+         linear-gradient(90deg, transparent calc(50% - 0.5px), currentColor 50%, transparent calc(50% + 0.5px)),
+         linear-gradient(0deg, transparent calc(50% - 0.5px), currentColor 50%, transparent calc(50% + 0.5px));
+      content: '';
+   }
+
+   .project-mark.teknik::after {
+      transform: rotate(45deg);
+   }
+
+   h3 {
+      font-size: clamp(1.3rem, 2vw, 1.65rem);
+      font-weight: 690;
+      letter-spacing: -0.036em;
+      line-height: 1.15;
+   }
+
+   p {
+      max-inline-size: 54ch;
+      color: var(--system-muted);
+   }
+
+   .project-flow {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.45rem 0.65rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: var(--system-accent);
+      font-size: 0.875rem;
+      font-weight: 650;
+   }
+
+   .project-flow li {
+      padding: 0.18rem 0.55rem;
+      border: 1px solid var(--system-line);
+      border-radius: 0.2rem;
+      background: var(--system-base);
+   }
+
+   .project-flow li + li {
+      position: relative;
+   }
+
+   .project-flow li + li::before {
+      position: absolute;
+      inset: 50% 100% auto auto;
+      inline-size: 0.7rem;
+      border-block-start: 1px solid var(--system-line);
+      content: '';
+   }
+
+   a {
+      display: inline-flex;
+      min-block-size: 2.75rem;
+      align-items: center;
+      margin-block: auto -0.3rem;
+      color: var(--system-accent);
+      font-weight: 680;
+   }
+</style>
