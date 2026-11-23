@@ -41,6 +41,19 @@ Redigera rubriken i YAML-fältet `title` och sidans beskrivning i `description`.
 
 Ändra kontaktsidans adress i YAML-fältet `email` i `kontakt.md`. Adressen visas som text och används som mål för e-postlänken. Fältet `signature` innehåller den avslutande signaturen. Godkända textunderlag för Om VizWay och Kontakt ligger i `_doc/`.
 
+## Redigera typografin
+
+De gemensamma inställningarna finns i `src/styles/global.css`.
+
+| Inställning | Användning |
+| --- | --- |
+| `--font-body` och `--font-heading` | Typsnitt för brödtext och rubriker. Båda använder systemets sans-serif. |
+| `--weight-body`, `--weight-heading` och `--weight-menu` | Standardvikter för brödtext, rubriker och menyval. Alla är `400`. |
+| `--size-menu` | Gemensam grundstorlek för länkar i sidhuvud och sidfot. |
+| `--leading-prose` och `--measure-prose` | Radavstånd för textavsnitt och systemingress samt maximal radbredd i textavsnitten. |
+
+Startsidans rubrik och logotypens typografi styrs i sina egna komponenter. Använd Markdown för avsiktlig betoning i sidtexter. Statusetiketterna har en egen vikt för att förbli tydliga.
+
 ## Redigera logotypen
 
 Ändra SVG-geometrin och logotypens gemensamma färger i `src/components/BrandLogo.astro`. Sloganen hämtas från `src/content/site/identitet.yaml`. Ändra `--brand-size` i `HeroLogo.astro` eller `SiteHeader.astro` för att skala ordmärke, båge, stjärna och slogan tillsammans.

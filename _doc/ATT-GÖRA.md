@@ -68,9 +68,7 @@ Punkterna 001–003 är verifierade i det lokala bygget för uppdrag 007.
 ## P2 – Planerade förbättringar
 
 ### 004 – Engelskspråkig webbplats
-
 **Status:** Öppen
-
 - [ ] **Logotypens bakgrund:** Säkerställ att hela sloganen ryms inom logotypens bakgrund vid samtliga fönsterstorlekar. Kontrollera särskilt ljust tema. Behåll nuvarande proportioner och design.
 - [ ] Inför svenska och engelska som språkval.
 - [ ] Behåll svenska som standardspråk.
@@ -86,7 +84,6 @@ Punkterna 001–003 är verifierade i det lokala bygget för uppdrag 007.
 **Mål:** En internationellt användbar webbplats utan duplicerad programlogik.
 
 ### 005 – Projektens utvecklingsstatus
-
 **Status:** Öppen
 
 - [ ] Undersök hur olika mognadsgrader bäst ska presenteras.
@@ -96,41 +93,32 @@ Punkterna 001–003 är verifierade i det lokala bygget för uppdrag 007.
 
 **Mål:** Ge en rättvisande bild av vad VizWay har åstadkommit och vad vi vill åstadkomma.
 
-### 006 – Finjustering av sidornas utseende
 
-**Status:** Öppen
+### 006 – Visuell och typografisk förfining
+**Prioritet:** P2
+**Status:** Pågår
+**Planeras före:** 004 – Engelskspråkig webbplats
 
-- [ ] Granska rubriker, textbredder och radavstånd.
-- [ ] Finjustera systemöversiktens introduktion.
-- [ ] Bedöm om temaväljaren ska vara mindre framträdande.
-- [ ] Säkerställ att de olika sidtyperna har en egen känsla men gemensam VizWay-identitet.
+- [x] Använd normal teckenvikt i rubriker och menyer. Utgå från `font-weight: 400`.
+- [x] Skapa typografisk hierarki med typsnitt, storlek, färg och avstånd.
+- [x] Behåll fetstil för medvetna framhävningar i löpande text.
+- [x] Granska rubriker, textbredder och radavstånd.
+- [x] Finjustera systemöversiktens introduktion.
+- [x] Kontrollera projektkort, statusetiketter och navigering.
+- [x] Bedöm om temaväljaren ska vara mindre framträdande.
+- [x] Säkerställ att sidtyperna har olika karaktär men gemensam VizWay-identitet.
+- [x] Behåll logotypens typografi oförändrad.
+- [x] Verifiera båda teman och mobilanpassning.
+- [x] Godkänn typografin efter manuell granskning.
 
 **Designprinciper:**
-
 - Start – visionär och poetisk.
 - System – teknisk och exakt.
 - Om VizWay – personlig och framåtblickande.
 - Kontakt – enkel och välkomnande.
 
-## P3 – Framtida idéer
+**Mål:** Elegant, luftig och konsekvent typografi där rubriker framträder genom sin form och placering snarare än kraftig fetstil.
 
-### 007 – Utvecklad projektpresentation
-
-**Status:** Parkerad
-
-- [ ] Illustrationer eller tekniska diagram för utvalda projekt.
-- [ ] Demonstrationer av fungerande system.
-- [ ] Fördjupad teknisk dokumentation.
-- [ ] Kategorifilter när antalet projekt motiverar det.
-
-### 008 – Fortsatt webbplatsutveckling
-
-**Status:** Parkerad
-
-- [ ] Utvärdera en kompakt logotypvariant för mycket små skärmar.
-- [ ] Utvärdera fler språk.
-- [ ] Utvärdera nyhets- eller utvecklingslogg.
-- [ ] Utvärdera särskilda presentationssidor för färdiga produkter.
 
 ## Klart
 

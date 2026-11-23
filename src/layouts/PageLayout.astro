@@ -34,10 +34,6 @@ const { title, description, warm = false } = Astro.props;
          linear-gradient(155deg, light-dark(#fcfaf5, #172328), var(--background) 84%);
    }
 
-   .page-heading {
-      gap: 0.8rem;
-   }
-
    .page-heading::before {
       inline-size: 2.8rem;
       block-size: 2px;
@@ -47,7 +43,6 @@ const { title, description, warm = false } = Astro.props;
 
    .prose {
       font-size: clamp(1rem, 1.25vw, 1.125rem);
-      line-height: 1.7;
    }
 
    .prose > :global(h2:first-child) {

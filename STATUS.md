@@ -1,4 +1,31 @@
-# Gemensam identitet och sidfot, 23 november 2026
+# Visuell och typografisk förfining, 23 november 2026
+
+Uppdrag 008 är genomfört och verifierat lokalt. Punkt 006 i [ATT-GÖRA.md](_doc/ATT-GÖRA.md) inväntar manuellt godkännande.
+
+## Genomförda ändringar
+
+- `global.css` styr rubriker, brödtext och menyer med separata teckenvikter. Grundvikten är 400 för alla tre. Typsnittet är fortsatt systemets sans-serif där den gemensamma typografin används.
+- Textavsnitten använder radavstånd 1,65 och en maximal radbredd på 65 teckenmått (`ch`). Systemingressen har fått något kortare rader. Rubrikernas storlek och mellanrum ger tydligare nivåer.
+- Projektkort, menyval och temaväljare har lättare typografi. **Utforska!** och e-postadressen använder vikten 500. Fetstil i löpande text och statusetiketternas vikt har bevarats.
+
+## Verifiering
+
+- `npm run build` byggde nio sidor. Granskade alla nio i Chrome vid 320, 390, 768 och 1 440 pixlar i ljust och mörkt tema.
+- Kontrollerade textkontrast, radbrytning, tangentbordsfokus, temaväxling, sidfotens länkar och systemkortens hela klickyta. Ingen horisontell rullning observerades.
+- Startsidans layoutmått, bakgrund och logotypens typografi matchade det lokala utgångsläget. Före ändringen matchade startsidan och systemöversikten den publicerade versionen visuellt i båda temana. [VizWay](https://vizway.se/)
+
+## Ändrade filer
+
+- Gemensam typografi i `src/styles/global.css`.
+- Komponenter i `src/components/SiteFooter.astro`, `src/components/hero/HeroExplore.astro`, `src/components/systems/SystemBanner.astro`, `src/components/systems/SystemCard.astro` och `src/components/systems/SystemSection.astro`.
+- Layouter i `src/layouts/PageLayout.astro` och `src/layouts/SystemLayout.astro`. Sidstilar i `src/pages/kontakt.astro` och `src/pages/system/index.astro`.
+- Dokumentation i `README.md`, `STATUS.md` och `_doc/ATT-GÖRA.md`.
+
+## Kvarstående
+
+- Manuell granskning och godkännande av typografin återstår. Den separata punkten om sloganens bakgrund i ljust tema ligger kvar.
+
+# Tidigare status för gemensam identitet och sidfot, 23 november 2026
 
 Uppdrag 007 är genomfört och verifierat i det lokala bygget.
 
