@@ -80,7 +80,7 @@ Punkterna 001–003 är verifierade i det lokala bygget för uppdrag 007.
 - [x] Använd konsekventa webbadresser, exempelvis `/en/` för engelska.
 - [x] Ange korrekt HTML-språk och språkalternativ för sökmotorer.
 - [x] Behåll aktuell sida vid språkbyte när motsvarande översättning finns.
-- [ ] Godkänn den engelska språkversionen efter manuell granskning.
+- [x] Godkänn den engelska språkversionen efter manuell granskning.
 
 **Mål:** En internationellt användbar webbplats utan duplicerad programlogik.
 
